@@ -2,32 +2,36 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Zadanie 5</title>
+    <title>StarMap</title>
 
     <style>
-        .color {
-            width: 100px;
-            height: 100px;
-            border: 2px solid black;
-            border-radius: 10px;
-            margin-bottom: 20px;
+        *{
+            draggable:false;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
         }
-
         .celestialBody {
             background-color: blue;
             width: 400px; /* You can define it by % also */
             height: 400px; /* You can define it by % also */
-            position: absolute;
+            position: relative;
             left: 200px;
             border: 1px solid black;
             border-radius: 50%;
+        }
+        .celestialMap {
+            position: absolute;
         }
 
         .inner {
             background-color: yellow;
             width: 200px; /* You can define it by % also */
             height: 200px; /* You can define it by % also */
-            position: absolute;
+            /*position: absolute;*/
             text-align: center;
 
             left: 100px;
@@ -35,22 +39,21 @@
             border: 1px solid black;
             border-radius: 50%;
         }
+
     </style>
 </head>
 <body>
 <div class="celestialMap">
-    <ul>
-        <li>dssd</li>
-    </ul>
-<!--    <div class="celestialBody"></div>-->
-    <div class="inner">&nbsp;</div>
+
+    <svg height="340" width="500">
+        <ellipse cx="200" cy="80" rx="100" ry="50"
+                 style="fill:yellow;stroke:purple;stroke-width:2;transform:rotate(20deg);"/>
+    </svg>
 
 
-    <div class="color" data-text="Hello, I'm div 1"></div>
-
-
-
-    <script type="text/JavaScript" src="app.js"></script>
 </div>
+
+
+<script type="text/JavaScript" src="app.js"></script>
 </body>
 </html>

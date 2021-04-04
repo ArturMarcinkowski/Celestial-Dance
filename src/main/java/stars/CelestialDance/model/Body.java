@@ -9,13 +9,13 @@ import javax.persistence.Id;
 
 @Data
 @Entity
-public class CelestialBody {
+public class Body {
 
-    public CelestialBody(int id, String name) {
+    public Body(int id, String name) {
         this.id = id;
         this.name = name;
     }
-    public CelestialBody() {
+    public Body() {
     }
 
     @Id
@@ -28,6 +28,8 @@ public class CelestialBody {
 
     private double velX;
     private double velY;
+
+    private int primaryBodyId;
 
     private int mass;
     private int radius;

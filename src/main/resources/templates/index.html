@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Zadanie 5</title>
+    <title>StarMap</title>
 
     <style>
         *{
@@ -39,23 +39,26 @@
             border: 1px solid black;
             border-radius: 50%;
         }
+        .orbit{
+            /*fill-opacity:0;*/
+            stroke:purple;
+            stroke-width:2;
+        }
 
     </style>
 </head>
 <body>
 <div class="celestialMap">
-    <ul>
-        <li>dssd</li>
-    </ul>
-<!--    <div class="celestialBody"></div>-->
-    <div class="inner">&nbsp;</div>
+
+    <svg height="340px" width="500px">
+        <ellipse cx="100px" cy="80px" rx="100px" ry="50px" class="orbit"
+                 style="transform:rotate(20deg);"/>
+    </svg>
 
 
-<!--    <div class="color" data-text="Hello, I'm div 1"></div>-->
-
-
-
-    <script type="text/JavaScript" src="app.js"></script>
 </div>
+
+
+<script type="text/JavaScript" src="app.js"></script>
 </body>
 </html>
