@@ -1,24 +1,45 @@
-window.addEventListener('DOMContentLoaded', (event) => {
-    const divs = document.querySelectorAll(".inner");
-    console.log(divs);
-
-    divs.forEach(el => {
-        el.addEventListener("mouseover", function () {
-            let randomColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
-            el.style.backgroundColor = randomColor;
-            el.innerHTML = "fsd";
-        })
-        el.addEventListener("mouseout", function () {
-            el.innerHTML = "";
-        })
-    })
-});
-
-
-const divs = document.querySelectorAll(".inner");
+const divs = document.querySelector(".inner");
 const celestialMap = document.querySelector(".celestialMap")
 const celestialBodies = document.querySelectorAll(".celestialBody");
-console.log(divs);
+const ul = document.querySelector("ul");
+
+
+let mouseDown = 0;
+let mouseOnClickPosX = 0;
+let mouseOnClickPosY = 0;
+let mapOnClickPosX = 0;
+let mapOnClickPosY = 0;
+
+document.onmousedown = function(event) {
+    mouseOnClickPosX = event.clientX;
+    mouseOnClickPosY = event.clientY;
+    mapOnClickPosX = celestialMap.offsetLeft;
+    mapOnClickPosY = celestialMap.offsetTop;
+    mouseDown++;
+}
+document.onmouseup = function() {
+    mouseDown--;
+}
+
+
+document.onmousemove = function(event) {
+    if(mouseDown){
+        celestialMap.style.left = (mapOnClickPosX + event.clientX - mouseOnClickPosX )+ "px";
+        celestialMap.style.top = (mapOnClickPosY + event.clientY - mouseOnClickPosY )+ "px";
+    }
+}
+
+
+// window.addEventListener('DOMContentLoaded', (event) => {
+//     document.addEventListener("mousedown", function () {
+//         document.addEventListener("mouseup", function () {
+//             let randomColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
+//             divs.style.backgroundColor = randomColor;
+//         })
+//     });
+// });
+
+
 
 
 setInterval(async () => {
@@ -30,8 +51,6 @@ setInterval(async () => {
     })
 }, 100);
 
-
-const ul = document.querySelector("ul");
 
 function show(data) {
     data.forEach(el => {
@@ -45,6 +64,7 @@ function show(data) {
         newDiv.style.height = el.radius + "px";
         newDiv.className = "celestialBody";
         celestialMap.appendChild(newDiv);
+
         let li = document.createElement("li");
         li.textContent = el.name;
         ul.appendChild(li);
