@@ -2,63 +2,33 @@
 <html>
 <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="../css/styles.css">
     <title>StarMap</title>
-
-    <style>
-        *{
-            draggable:false;
-            -webkit-touch-callout: none;
-            -webkit-user-select: none;
-            -khtml-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-        }
-        .celestialBody {
-            background-color: blue;
-            width: 400px; /* You can define it by % also */
-            height: 400px; /* You can define it by % also */
-            position: relative;
-            left: 200px;
-            border: 1px solid black;
-            border-radius: 50%;
-        }
-        .celestialMap {
-            position: absolute;
-        }
-
-        .inner {
-            background-color: yellow;
-            width: 200px; /* You can define it by % also */
-            height: 200px; /* You can define it by % also */
-            /*position: absolute;*/
-            text-align: center;
-
-            left: 100px;
-            top: 150px;
-            border: 1px solid black;
-            border-radius: 50%;
-        }
-        .orbit{
-            /*fill-opacity:0;*/
-            stroke:purple;
-            stroke-width:2;
-        }
-
-    </style>
 </head>
 <body>
-<div class="celestialMap">
 
-    <svg height="340px" width="500px">
-        <ellipse cx="100px" cy="80px" rx="100px" ry="50px" class="orbit"
-                 style="transform:rotate(20deg);"/>
-    </svg>
-
-
+<div class="interface">
+    <div id="pauseButton" class="btn"></div>
+    <div class="window" id="window-4">
+        <div class="window-top"></div>
+        <div class="window-inside"></div>
+    </div>
 </div>
 
 
+<div class="celestialMap" id="celestialMap">
+    <svg id="svg-4" style="position: absolute">
+        <polyline id='4-polyline' points="100,100 2000,2000" style="position: absolute;fill:none;stroke:black;stroke-width:3" />
+    </svg>
+
+<!--    <svg height="340px" width="500px">-->
+<!--        <ellipse cx="100px" cy="80px" rx="100px" ry="50px" class="orbit"-->
+<!--                 style="position: absolute;transform:rotate(20deg);"/>-->
+<!--    </svg>-->
+</div>
+
 <script type="text/JavaScript" src="app.js"></script>
+<script type="text/javascript" src="eventHolder.js"></script>
+<script type="text/JavaScript" src="dataReader.js"></script>
 </body>
 </html>

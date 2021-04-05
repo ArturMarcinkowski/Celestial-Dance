@@ -15,7 +15,7 @@ public class BodyServiceImpl implements BodyService {
 
     private final BodyRepository bodyRepository;
     private final OrbitRadiusService orbitRadiusService;
-    private final double G = 1.5;
+    private final double G = 0.1;
 
     public BodyServiceImpl(BodyRepository bodyRepository, OrbitRadiusService orbitRadiusService) {
         this.bodyRepository = bodyRepository;
@@ -44,7 +44,7 @@ public class BodyServiceImpl implements BodyService {
             double diffX = body1.getPosX() - body2.getPosX();
             double diffY = body1.getPosY() - body2.getPosY();
             double r = Utils.calcRadius(diffX, diffY);
-            if (r * r != 0) {
+            if (r != 0) {
                 double F = G * body2.getMass() / (r * r);
                 changeX += F * diffX / r;
                 changeY += F * diffY / r;
@@ -54,10 +54,11 @@ public class BodyServiceImpl implements BodyService {
             }
         }
 
-        body1.setPosX(body1.getPosX() + body1.getVelX());
-        body1.setPosY(body1.getPosY() + body1.getVelY());
+
         body1.setVelX((body1.getVelX() - changeX));
         body1.setVelY((body1.getVelY() - changeY));
+        body1.setPosX(body1.getPosX() + body1.getVelX());
+        body1.setPosY(body1.getPosY() + body1.getVelY());
 
         return body1;
     }

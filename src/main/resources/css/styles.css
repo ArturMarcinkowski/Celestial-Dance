@@ -1,0 +1,85 @@
+*{
+    draggable:false;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+body{
+    overflow: hidden;
+}
+
+.celestialBody {
+    background-color: blue;
+    width: 400px; /* You can define it by % also */
+    height: 400px; /* You can define it by % also */
+    position: absolute;
+
+    border: 1px solid black;
+    border-radius: 50%;
+
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.celestialBodyCenter {
+    background-color: black;
+    width: 20px; /* You can define it by % also */
+    height: 20px; /* You can define it by % also */
+    position: absolute;
+    border: 1px solid black;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.celestialMap {
+    position: absolute;
+}
+
+.orbit{
+    /*fill-opacity:0;*/
+    stroke:purple;
+    stroke-width:2;
+}
+
+#pauseButton{
+    background-color: darkred;
+    width: 40px; /* You can define it by % also */
+    height: 40px;
+    left: 1600px;
+    position: absolute;
+}
+
+.interface{
+    position: absolute;
+    left: 0px;
+    z-index: 1000;
+}
+
+.window{
+    background-color: indigo;
+    width: 250px; /* You can define it by % also */
+    height: 300px;
+    left: 100px;
+    position: absolute;
+}
+
+.window-top{
+    background-color: black;
+    width: 250px; /* You can define it by % also */
+    height: 30px;
+}
+
+window-inside{
+    background-color: midnightblue;
+    /*z-index: 1500;*/
+    /*position: absolute;*/
+    left: 20px;
+    width: 210px; /* You can define it by % also */
+    height: 250px;
+}
