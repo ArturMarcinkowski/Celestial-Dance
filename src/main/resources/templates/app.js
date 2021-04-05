@@ -1,12 +1,16 @@
 const celestialMap = document.querySelector(".celestialMap")
-const celestialBodies = document.querySelectorAll(".celestialBody");
 const pauseButton = document.querySelector('#pauseButton');
 const interface = document.querySelector('.interface');
-
+let celestialBodies;
+let windows;
 
 document.addEventListener('DOMContentLoaded', async () => {
     let startUpData = await returnData("http://localhost:8080/getall/");
     displayStartUpData(startUpData);
+
+    celestialBodies = document.querySelectorAll(".celestialBody");
+    windows = document.querySelectorAll('.window');
+    setUpEventListeners();
 })
 
 

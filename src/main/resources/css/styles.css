@@ -63,23 +63,42 @@ body{
 
 .window{
     background-color: indigo;
-    width: 250px; /* You can define it by % also */
-    height: 300px;
+    visibility: hidden;
+    width: 200px; /* You can define it by % also */
+    height: 250px;
     left: 100px;
     position: absolute;
+    /*border: black;*/
+    border-style: groove;
 }
 
 .window-top{
     background-color: black;
-    width: 250px; /* You can define it by % also */
+    position: absolute;
+    width: 200px; /* You can define it by % also */
     height: 30px;
 }
 
-window-inside{
-    background-color: midnightblue;
-    /*z-index: 1500;*/
-    /*position: absolute;*/
-    left: 20px;
-    width: 210px; /* You can define it by % also */
-    height: 250px;
+.window-top-text{
+    color: darkorange;
+    margin-left: 20px;
+    margin-top: 2px;
 }
+
+.window-x-btn{
+    background-color: chocolate;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    right: 5px;
+    top: 5px;
+}
+
+.window-inner-text{
+    color: lightgray;
+    margin-left: 20px;
+    margin-top: 50px;
+    font-size: 18px;
+}
+
+

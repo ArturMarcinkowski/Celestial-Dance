@@ -4,7 +4,6 @@ async function returnData(url) {
         const json = request.json();
         return json;
     }
-
     let data = await load(url);
     return data;
 }
@@ -17,6 +16,10 @@ function displayPlanets(data) {
         let center = document.getElementById(el.id + "C");
         center.style.top = el.posY + "px";
         center.style.left = el.posX + "px";
+
+        let bodyWindow = document.getElementById("window-" + el.id);
+        bodyWindow.querySelector(".window-inner-text").innerHTML = generateWindowInnerText(el);
+
 
         if (generateOrbit2) {
             let smallDiv = document.createElement("div");
@@ -91,25 +94,39 @@ function displayOrbits(data) {
 
 function displayStartUpData(data) {
     data.forEach(el => {
-        let newDiv = document.createElement("div");
-        newDiv.id = el.id;
-        newDiv.textContent = el.name;
-        newDiv.style.top = el.posY + "px";
-        newDiv.style.left = el.posX + "px";
-        newDiv.style.backgroundColor = el.color
-        newDiv.style.width = el.radius + "px";
-        newDiv.style.height = el.radius + "px";
-        newDiv.className = "celestialBody";
-        celestialMap.appendChild(newDiv);
-
-        let smallDiv = document.createElement("div");
-        smallDiv.id = el.id + "C";
-        smallDiv.className = "celestialBodyCenter";
-        smallDiv.style.top = el.posY + "px";
-        smallDiv.style.left = el.posX + "px";
-        celestialMap.appendChild(smallDiv);
+        let newCelestialBody = document.createElement("div");
+        newCelestialBody.id = el.id;
+        newCelestialBody.textContent = el.name;
+        newCelestialBody.style.top = el.posY + "px";
+        newCelestialBody.style.left = el.posX + "px";
+        newCelestialBody.style.backgroundColor = el.color
+        newCelestialBody.style.width = el.radius + "px";
+        newCelestialBody.style.height = el.radius + "px";
+        newCelestialBody.className = "celestialBody";
+        celestialMap.appendChild(newCelestialBody);
 
 
+        let newCelestialCenter = document.createElement("div");
+        newCelestialCenter.id = el.id + "C";
+        newCelestialCenter.className = "celestialBodyCenter";
+        newCelestialCenter.style.top = el.posY + "px";
+        newCelestialCenter.style.left = el.posX + "px";
+        celestialMap.appendChild(newCelestialCenter);
+
+
+        let newWindow = document.querySelector(".window").cloneNode(true);
+        newWindow.id = "window-" + el.id;
+        newWindow.querySelector("h2").textContent = el.name;
+        newWindow.querySelector(".window-inner-text").innerHTML = generateWindowInnerText(el);
+        interface.appendChild(newWindow);
     })
+}
+
+function generateWindowInnerText(data){
+    return "    <b>name:</b>   " + data.name +"<br/>" +
+        "    <b>mass:</b>   " + data.mass +"<br/>" +
+        "    <b>radius:</b> " + data.radius +"<br/>" +
+        "    <b>color:</b>  " + data.color +"<br/>" +
+        "    <b>velocity:</b>   " + parseFloat(data.velX).toFixed(6) +"<br/>";
 }
 
