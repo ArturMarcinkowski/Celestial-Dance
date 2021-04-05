@@ -2,7 +2,8 @@ package stars.CelestialDance.service;
 
 
 import org.springframework.stereotype.Service;
-import stars.CelestialDance.Utils;
+import stars.CelestialDance.utils.BodyDataConverter;
+import stars.CelestialDance.utils.Utils;
 import stars.CelestialDance.model.Body;
 import stars.CelestialDance.repository.BodyRepository;
 
@@ -22,10 +23,12 @@ public class BodyServiceImpl implements BodyService {
         this.orbitRadiusService = orbitRadiusService;
     }
 
+    @Override
     public Optional<Body> findById(int id) {
         return bodyRepository.findById(id);
     }
 
+    @Override
     public List<Body> updatePositions() {
         List<Body> oldList = bodyRepository.findAll();
         List<Body> newList = new ArrayList<>();
@@ -37,15 +40,16 @@ public class BodyServiceImpl implements BodyService {
         return newList;
     }
 
+    @Override
     public Body updatePosition(Body body1, List<Body> bodies) {
-        double changeX = 0, changeY = 0;
+        float changeX = 0, changeY = 0;
 
         for (Body body2 : bodies) {
-            double diffX = body1.getPosX() - body2.getPosX();
-            double diffY = body1.getPosY() - body2.getPosY();
-            double r = Utils.calcRadius(diffX, diffY);
+            float diffX = body1.getPosX() - body2.getPosX();
+            float diffY = body1.getPosY() - body2.getPosY();
+            float r = Utils.calcRadius(diffX, diffY);
             if (r != 0) {
-                double F = G * body2.getMass() / (r * r);
+                float F = (float) G * body2.getMass() / (r * r);
                 changeX += F * diffX / r;
                 changeY += F * diffY / r;
             }
@@ -63,5 +67,22 @@ public class BodyServiceImpl implements BodyService {
         return body1;
     }
 
+    @Override
+    public Body processData(BodyDataConverter data){
+        Body body =  new Body();
+//        body.setMass(data.getMass());
+//        body.setName(data.getName());
+        return body;
+    }
 
+    @Override
+    public void save(Body body) {
+        bodyRepository.save(body);
+    }
+
+    @Override
+    public int saveNewBody(Body body) {
+        bodyRepository.save(body);
+        return body.getId();
+    }
 }

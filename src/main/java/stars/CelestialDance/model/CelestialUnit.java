@@ -6,5 +6,5 @@ import lombok.Data;
 public class CelestialUnit {
     private Body body;
     private OrbitDisplay orbitDisplay;
-    private OrbitRadius orbitMath;
+    private OrbitRadius orbitRadius;
 }

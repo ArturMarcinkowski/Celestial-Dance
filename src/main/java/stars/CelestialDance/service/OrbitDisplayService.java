@@ -1,14 +1,11 @@
 package stars.CelestialDance.service;
 
 import org.springframework.stereotype.Service;
-import stars.CelestialDance.Utils;
+import stars.CelestialDance.utils.Utils;
 import stars.CelestialDance.model.Body;
 import stars.CelestialDance.model.OrbitDisplay;
 import stars.CelestialDance.model.OrbitRadius;
 import stars.CelestialDance.repository.OrbitDisplayRepository;
-import stars.CelestialDance.repository.OrbitRadiusRepository;
-
-import java.util.Optional;
 
 @Service
 public class OrbitDisplayService {
@@ -41,5 +38,8 @@ public class OrbitDisplayService {
         return orbitDisplay;
     }
 
+    public void save(OrbitDisplay display){
+        orbitDisplayRepository.save(display);
+    }
 
 }

@@ -11,10 +11,10 @@ import javax.persistence.Id;
 @Entity
 public class Body {
 
-    public Body(int id, String name) {
-        this.id = id;
-        this.name = name;
-    }
+//    public Body(int id, String name) {
+//        this.id = id;
+//        this.name = name;
+//    }
     public Body() {
     }
 
@@ -23,15 +23,18 @@ public class Body {
     private int id;
     private String name;
 
-    private double posX;
-    private double posY;
+    private float posX;
+    private float posY;
 
-    private double velX;
-    private double velY;
+    private float velX;
+    private float velY;
 
     private int primaryBodyId;
 
-    private int mass;
+    private float mass;
+    private float massValue;
+    private int massExponent;
+
     private int radius;
     private String color;
 

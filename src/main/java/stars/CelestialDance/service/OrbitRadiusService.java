@@ -27,7 +27,6 @@ public class OrbitRadiusService {
         orbitRadiusRepository.save(orbitRadius);
     }
 
-
     public void testForRadius(int id, double r) {
         Optional<OrbitRadius> optionalOrbitRadius = orbitRadiusRepository.findById(id);
         if (optionalOrbitRadius.isPresent()) {
@@ -42,6 +41,10 @@ public class OrbitRadiusService {
         } else {
             makeOrbitRadius(r, id);
         }
+    }
+
+    public void save(OrbitRadius radius){
+        orbitRadiusRepository.save(radius);
     }
 
 

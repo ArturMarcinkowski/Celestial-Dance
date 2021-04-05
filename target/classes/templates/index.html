@@ -7,24 +7,31 @@
 </head>
 <body>
 
-
 <div class="interface">
     <div id="pauseButton" class="btn"></div>
-    <div class="window" id="window-4"></div>
+    <div class="window">
+
+        <div class="window-top">
+            <h2 class="window-top-text"></h2>
+            <div class="window-x-btn"> &nbsp;&#10006;</div>
+        </div>
+        <div class="window-inner-text"></div>
+<!--                <div class="window-inside"></div>-->
+
+    </div>
 </div>
 
 
-<div class="celestialMap">
-
+<div class="celestialMap" id="celestialMap">
     <svg id="svg-4" style="position: absolute">
-        <polyline id='4-polyline' points="100,100 2000,2000" style="position: absolute;fill:none;stroke:black;stroke-width:3" />
+        <polyline id='4-polyline' points="100,100 2000,2000"
+                  style="position: absolute;fill:none;stroke:black;stroke-width:3"/>
     </svg>
 
-    <svg height="340px" width="500px">
-        <ellipse cx="100px" cy="80px" rx="100px" ry="50px" class="orbit"
-                 style="position: absolute;transform:rotate(20deg);"/>
-    </svg>
-
+    <!--    <svg height="340px" width="500px">-->
+    <!--        <ellipse cx="100px" cy="80px" rx="100px" ry="50px" class="orbit"-->
+    <!--                 style="position: absolute;transform:rotate(20deg);"/>-->
+    <!--    </svg>-->
 </div>
 
 <script type="text/JavaScript" src="app.js"></script>
