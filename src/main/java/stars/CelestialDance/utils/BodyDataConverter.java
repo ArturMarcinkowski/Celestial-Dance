@@ -9,9 +9,9 @@ public class BodyDataConverter {
     BodyMassDataConverter mass;
     float density;
     int meanRadius;
-    int semimajorAxis;
-    int perihelion;
-    int aphelion;
-    boolean isPlanet;
+    long semimajorAxis;
+    long perihelion;
+    long aphelion;
+    String isPlanet;
 
 }

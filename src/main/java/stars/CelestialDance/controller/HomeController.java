@@ -2,6 +2,7 @@ package stars.CelestialDance.controller;
 
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
+import stars.CelestialDance.utils.BodiesDataConverter;
 import stars.CelestialDance.utils.BodyDataConverter;
 import stars.CelestialDance.model.Body;
 import stars.CelestialDance.model.CelestialUnit;
@@ -54,16 +55,26 @@ public class HomeController {
     }
 
     @RequestMapping("/generate-data-from-api")
-    public String generateData(){
-        final String uri = "https://api.le-systeme-solaire.net/rest/bodies/mars";
-
+    public String generateData(@RequestParam(required = false) String demand){
+        String url;
         RestTemplate restTemplate = new RestTemplate();
-        BodyDataConverter data = restTemplate.getForObject(uri, BodyDataConverter.class);
+        if(demand == null){
+            url = "https://api.le-systeme-solaire.net/rest/bodies/mars";
+            BodyDataConverter data = restTemplate.getForObject(url, BodyDataConverter.class);
+            CelestialUnit unit = unitService.processData(data);
+            unitService.saveNewUnit(unit);
+        }else if(demand.equals("planets")){
+            url = "https://api.le-systeme-solaire.net/rest/bodies";
+            BodiesDataConverter multipleData = restTemplate.getForObject(url, BodiesDataConverter.class);
+            BodyDataConverter data[] = multipleData.getBodies();
+            List<CelestialUnit> units = unitService.processMultipleData(data, "planets");
+            units.stream().forEach(unitService::saveNewUnit);
+//            for(CelestialUnit unit:units){
+//                unitService.saveNewUnit(unit);
+//            }
+        }
 
-
-        CelestialUnit unit = unitService.processData(data);
-        unitService.saveNewUnit(unit);
         return "done";
-
     }
+
 }

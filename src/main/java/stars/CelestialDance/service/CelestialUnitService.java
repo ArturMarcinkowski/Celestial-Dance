@@ -9,6 +9,9 @@ import stars.CelestialDance.model.OrbitRadius;
 import stars.CelestialDance.repository.BodyRepository;
 import stars.CelestialDance.repository.OrbitRadiusRepository;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class CelestialUnitService {
 
@@ -23,9 +26,9 @@ public class CelestialUnitService {
         this.displayService = displayService;
     }
 
-    public CelestialUnit processData(BodyDataConverter data){
+    public CelestialUnit processData(BodyDataConverter data) {
         CelestialUnit unit = new CelestialUnit();
-        Body body =  new Body();
+        Body body = new Body();
         OrbitRadius radius = new OrbitRadius();
 
         body.setName(data.getEnglishName());
@@ -42,14 +45,28 @@ public class CelestialUnitService {
         return unit;
     }
 
-    public void saveNewUnit(CelestialUnit unit){
+    public List<CelestialUnit> processMultipleData(BodyDataConverter[] multipleData, String filter) {
+        List<CelestialUnit> units = new ArrayList<>();
+        int counter = 0;
+        if (filter.equals("planets")) {
+            for (BodyDataConverter data : multipleData) {
+                if (data.getIsPlanet().equals("true")) {
+                    units.add(processData(data));
+                }
+            }
+            return units;
+        }
+        return null;
+    }
+
+    public void saveNewUnit(CelestialUnit unit) {
         int id = bodyService.saveNewBody(unit.getBody());
-        if(unit.getOrbitDisplay() != null){
+        if (unit.getOrbitDisplay() != null) {
             unit.getOrbitDisplay().setId(id);
             displayService.save(unit.getOrbitDisplay());
         }
 
-        if(unit.getOrbitRadius() != null){
+        if (unit.getOrbitRadius() != null) {
             unit.getOrbitRadius().setId(id);
             radiusService.save(unit.getOrbitRadius());
         }
