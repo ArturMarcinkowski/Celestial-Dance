@@ -4,14 +4,13 @@ import lombok.Data;
 
 @Data
 public class BodyDataConverter {
-//    String id;
-    String englishName;
-    BodyMassDataConverter mass;
-    float density;
-    int meanRadius;
-    long semimajorAxis;
-    long perihelion;
-    long aphelion;
-    String isPlanet;
-
+    private String englishName;
+    private BodyMassDataConverter mass;
+    private float density;
+    private int meanRadius;
+    private long semimajorAxis;
+    private long perihelion;
+    private long aphelion;
+    private String isPlanet;
+    private float eccentricity;
 }

@@ -15,14 +15,14 @@ public class OrbitRadiusService {
         this.orbitRadiusRepository = orbitRadiusRepository;
     }
 
-    public OrbitRadius findById(int id) {
-        return orbitRadiusRepository.findById(id).get();
+    public Optional<OrbitRadius> findById(int id) {
+        return orbitRadiusRepository.findById(id);
     }
 
     public void makeOrbitRadius(double r, int id) {
         OrbitRadius orbitRadius = new OrbitRadius();
-        orbitRadius.setRMax(r);
-        orbitRadius.setRMax(r);
+        orbitRadius.setRMax((long) r);
+        orbitRadius.setRMax((long) r);
         orbitRadius.setId(id);
         orbitRadiusRepository.save(orbitRadius);
     }
@@ -32,10 +32,10 @@ public class OrbitRadiusService {
         if (optionalOrbitRadius.isPresent()) {
             OrbitRadius orbitRadius = optionalOrbitRadius.get();
             if (orbitRadius.getRMax() < r || orbitRadius.getRMax() == 0) {
-                orbitRadius.setRMax(r);
+                orbitRadius.setRMax((long) r);
             }
             if (orbitRadius.getRMin() > r || orbitRadius.getRMin() == 0) {
-                orbitRadius.setRMin(r);
+                orbitRadius.setRMin((long) r);
             }
             orbitRadiusRepository.save(orbitRadius);
         } else {

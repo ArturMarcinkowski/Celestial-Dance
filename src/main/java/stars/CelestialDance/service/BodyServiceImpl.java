@@ -2,7 +2,6 @@ package stars.CelestialDance.service;
 
 
 import org.springframework.stereotype.Service;
-import stars.CelestialDance.utils.BodyDataConverter;
 import stars.CelestialDance.utils.Utils;
 import stars.CelestialDance.model.Body;
 import stars.CelestialDance.repository.BodyRepository;
@@ -58,21 +57,12 @@ public class BodyServiceImpl implements BodyService {
             }
         }
 
-
         body1.setVelX((body1.getVelX() - changeX));
         body1.setVelY((body1.getVelY() - changeY));
         body1.setPosX(body1.getPosX() + body1.getVelX());
         body1.setPosY(body1.getPosY() + body1.getVelY());
 
         return body1;
-    }
-
-    @Override
-    public Body processData(BodyDataConverter data){
-        Body body =  new Body();
-//        body.setMass(data.getMass());
-//        body.setName(data.getName());
-        return body;
     }
 
     @Override
@@ -85,4 +75,5 @@ public class BodyServiceImpl implements BodyService {
         bodyRepository.save(body);
         return body.getId();
     }
+
 }

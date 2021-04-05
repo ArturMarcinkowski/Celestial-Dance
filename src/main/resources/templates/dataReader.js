@@ -26,6 +26,7 @@ function displayPlanets(data) {
             smallDiv.className = "celestialBodyCenter";
             smallDiv.style.top = el.posY + "px";
             smallDiv.style.left = el.posX + "px";
+            // smallDiv.style.scale=1;
             celestialMap.appendChild(smallDiv);
         }
 

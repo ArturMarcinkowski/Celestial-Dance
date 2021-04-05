@@ -13,10 +13,12 @@ public class OrbitRadius {
     @Id
     private int id;
 
-    private double rMin;
+    private long rMin;
     private boolean rMinConfirm;
 
-    private double rMax;
+    private long rMax;
     private boolean rMaxConfirm;
+
+    private float eccentricity;
 
 }

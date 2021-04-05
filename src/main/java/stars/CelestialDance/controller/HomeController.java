@@ -18,7 +18,7 @@ import java.util.Optional;
 @RestController
 public class HomeController {
 
-    private BodyService bodyService;
+    private final BodyService bodyService;
     private final OrbitDisplayService orbitDisplayService;
     private final CelestialUnitService unitService;
 
@@ -28,12 +28,6 @@ public class HomeController {
         this.unitService = unitService;
     }
 
-
-    //    @CrossOrigin
-//    @RequestMapping("/")
-//    public Body home() {
-//        return new Body(1, "Sun");
-//    }
 
     @CrossOrigin
     @RequestMapping("/getall")
@@ -55,25 +49,29 @@ public class HomeController {
     }
 
     @RequestMapping("/generate-data-from-api")
-    public String generateData(@RequestParam(required = false) String demand){
+    public String generateData(@RequestParam(required = false) String demand, @RequestParam(required = false) String name) {
         String url;
         RestTemplate restTemplate = new RestTemplate();
-        if(demand == null){
-            url = "https://api.le-systeme-solaire.net/rest/bodies/mars";
+        if (name != null) {
+            url = "https://api.le-systeme-solaire.net/rest/bodies/" + name;
             BodyDataConverter data = restTemplate.getForObject(url, BodyDataConverter.class);
             CelestialUnit unit = unitService.processData(data);
             unitService.saveNewUnit(unit);
-        }else if(demand.equals("planets")){
+        } else if (demand.equals("planets")) {
             url = "https://api.le-systeme-solaire.net/rest/bodies";
             BodiesDataConverter multipleData = restTemplate.getForObject(url, BodiesDataConverter.class);
-            BodyDataConverter data[] = multipleData.getBodies();
+            List<BodyDataConverter> data = multipleData.getBodies();
             List<CelestialUnit> units = unitService.processMultipleData(data, "planets");
-            units.stream().forEach(unitService::saveNewUnit);
-//            for(CelestialUnit unit:units){
-//                unitService.saveNewUnit(unit);
-//            }
+            units.forEach(unitService::saveNewUnit);
         }
+        return "done";
+    }
 
+    @RequestMapping("/set-body-on-map")
+    public String setBody(@RequestParam int id){
+        CelestialUnit unit = unitService.findById(id);
+        unitService.setUnitOnMap(unit, "ap");
+        unitService.save(unit);
         return "done";
     }
 

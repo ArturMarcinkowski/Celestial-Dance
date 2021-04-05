@@ -7,6 +7,8 @@ import stars.CelestialDance.model.OrbitDisplay;
 import stars.CelestialDance.model.OrbitRadius;
 import stars.CelestialDance.repository.OrbitDisplayRepository;
 
+import java.util.Optional;
+
 @Service
 public class OrbitDisplayService {
 
@@ -22,7 +24,7 @@ public class OrbitDisplayService {
     public OrbitDisplay calculateAllData(Body body1, Body body2) {
         OrbitDisplay orbitDisplay = new OrbitDisplay();
         orbitDisplay.setId(body1.getId());
-        OrbitRadius orbitRadius = orbitRadiusService.findById(body1.getId());
+        OrbitRadius orbitRadius = orbitRadiusService.findById(body1.getId()).get();
         orbitDisplay.setSemiMajorAxis((int) (orbitRadius.getRMax() + orbitRadius.getRMin()));
         orbitDisplay.setSemiMinorAxis((int) Math.sqrt(orbitRadius.getRMin() * orbitRadius.getRMax()));
 
@@ -40,6 +42,10 @@ public class OrbitDisplayService {
 
     public void save(OrbitDisplay display){
         orbitDisplayRepository.save(display);
+    }
+
+    public Optional<OrbitDisplay> findById(int id){
+        return orbitDisplayRepository.findById(id);
     }
 
 }

@@ -9,9 +9,6 @@ import javax.persistence.Id;
 @Entity
 public class OrbitDisplay {
 
-    public OrbitDisplay() {
-    }
-
     @Id
     private int id;
 
