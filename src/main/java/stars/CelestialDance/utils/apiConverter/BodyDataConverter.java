@@ -8,6 +8,8 @@ public class BodyDataConverter {
     private BodyMassDataConverter mass;
     private float density;
     private int meanRadius;
+    private int equaRadius;
+    private int polarRadius;
     private long semimajorAxis;
     private long perihelion;
     private long aphelion;

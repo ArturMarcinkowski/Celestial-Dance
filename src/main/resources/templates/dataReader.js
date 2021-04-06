@@ -9,6 +9,10 @@ async function returnData(url) {
     return data;
 }
 
+async function sendRequest (url) {
+        await fetch(url);
+}
+
 function displayPlanets(data) {
     data.forEach(el => {
         let body = document.getElementById(el.id);
@@ -38,6 +42,13 @@ function displayStartUpData(data) {
 }
 
 function addBody(data) {
+    let newCenter = document.createElement("div");
+    newCenter.id = "center-" + data.id;
+    newCenter.className = "celestialBodyCenter";
+    newCenter.style.top = data.posY + "px";
+    newCenter.style.left = data.posX + "px";
+    celestialMap.appendChild(newCenter);
+
     let newBody = document.createElement("div");
     newBody.id = data.id;
     newBody.textContent = data.name;
@@ -48,14 +59,6 @@ function addBody(data) {
     newBody.style.height = data.radius + "px";
     newBody.className = "celestialBody";
     celestialMap.appendChild(newBody);
-
-
-    let newCenter = document.createElement("div");
-    newCenter.id = "center-" + data.id;
-    newCenter.className = "celestialBodyCenter";
-    newCenter.style.top = data.posY + "px";
-    newCenter.style.left = data.posX + "px";
-    celestialMap.appendChild(newCenter);
 
 
     let newWindow = document.querySelector(".window").cloneNode(true);

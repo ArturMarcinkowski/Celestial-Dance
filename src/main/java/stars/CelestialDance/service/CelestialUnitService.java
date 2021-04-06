@@ -32,7 +32,7 @@ public class CelestialUnitService {
         body.setName(data.getEnglishName());
         body.setMassValue(data.getMass().getMassValue());
         body.setMassExponent(data.getMass().getMassExponent() - (int) Math.log10(Utils.getDataScale()));
-        body.setRadius(data.getMeanRadius() / Utils.getDataScale());
+        body.setRadius(Math.max(data.getMeanRadius(), Math.max(data.getEquaRadius(), data.getPolarRadius())) / Utils.getDataScale());
 
         radius.setEccentricity(data.getEccentricity());
         radius.setRMin(data.getAphelion() / Utils.getDataScale());
@@ -125,7 +125,7 @@ public class CelestialUnitService {
         return unit;
     }
 
-    public void save(CelestialUnit unit){
+    public void save(CelestialUnit unit) {
         bodyService.save(unit.getBody());
         int id = unit.getBody().getId();
         if (unit.getOrbitDisplay() != null) {

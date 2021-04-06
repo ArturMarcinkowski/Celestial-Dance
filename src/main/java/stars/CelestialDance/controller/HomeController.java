@@ -36,6 +36,12 @@ public class HomeController {
     }
 
     @CrossOrigin
+    @RequestMapping("/make-move")
+    public List<Body> update() {
+        return bodyService.updatePositions();
+    }
+
+    @CrossOrigin
     @RequestMapping("/get-orbit-data")
     public OrbitDisplay home3(@RequestParam int id) {
         Optional<Body> optionalBody = bodyService.findById(id);

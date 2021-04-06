@@ -19,13 +19,14 @@ document.addEventListener('DOMContentLoaded', async () => {
     let dataFromApi = await returnData("https://api.le-systeme-solaire.net/rest/bodies");
     displayBodiesListFromApi(dataFromApi);
 
+    setUpMouseMovementEvents();
     setUpEventListeners();
 })
 
 
 setInterval(async () => {
     if (!pause) {
-        let bodiesData = await returnData("http://localhost:8080/getall/");
+        let bodiesData = await returnData("http://localhost:8080/make-move/");
         displayPlanets(bodiesData);
         if (timer === 50) {
             timer = 0;
