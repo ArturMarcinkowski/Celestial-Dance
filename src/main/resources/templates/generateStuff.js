@@ -32,7 +32,9 @@ function generateWindow(data){
     newWindow.querySelector("h2").textContent = data.name;
     newWindow.querySelector(".window-inner-text").innerHTML = generateWindowInnerText(data);
 
-    setWindowCloseClick(newWindow);
+    setWindowDeleteButton(newWindow);
+    setWindowLookButton(newWindow);
+    setWindowCloseButton(newWindow);
     myInterface.appendChild(newWindow);
 }
 
@@ -54,3 +56,4 @@ function generateApiListElement(name){
     setApiListClick(newListElement);
     apiBodyBox.firstChild.appendChild(newListElement);
 }
+

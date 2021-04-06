@@ -24,6 +24,18 @@ public class CelestialUnitService {
         this.displayService = displayService;
     }
 
+    public void deleteById(int id){
+        if(displayService.findById(id).isPresent()){
+            displayService.deleteById(id);
+        }
+        if(radiusService.findById(id).isPresent()){
+            radiusService.deleteById(id);
+        }
+        if(bodyService.findById(id).isPresent()){
+            bodyService.deleteById(id);
+        }
+    }
+
     public CelestialUnit processData(BodyDataConverter data) {
         CelestialUnit unit = new CelestialUnit();
         Body body = new Body();

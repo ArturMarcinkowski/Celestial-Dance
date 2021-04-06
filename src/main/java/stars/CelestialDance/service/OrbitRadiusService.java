@@ -15,6 +15,10 @@ public class OrbitRadiusService {
         this.orbitRadiusRepository = orbitRadiusRepository;
     }
 
+    public void deleteById(int id){
+        orbitRadiusRepository.deleteById(id);
+    }
+
     public Optional<OrbitRadius> findById(int id) {
         return orbitRadiusRepository.findById(id);
     }

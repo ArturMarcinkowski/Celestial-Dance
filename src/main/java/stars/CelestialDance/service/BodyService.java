@@ -7,6 +7,8 @@ import java.util.Optional;
 
 public interface BodyService {
 
+    void deleteById(int id);
+
     List<Body> updatePositions();
 
     Optional<Body> findById(int id);

@@ -20,6 +20,10 @@ public class OrbitDisplayService {
         this.orbitRadiusService = orbitRadiusService;
     }
 
+    public void deleteById(int id){
+        orbitDisplayRepository.deleteById(id);
+    }
+
 
     public OrbitDisplay calculateAllData(Body body1, Body body2) {
         OrbitDisplay orbitDisplay = new OrbitDisplay();

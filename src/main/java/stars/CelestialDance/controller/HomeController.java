@@ -48,6 +48,13 @@ public class HomeController {
     }
 
     @CrossOrigin
+    @RequestMapping("/delete-by-id")
+    public String delete(@RequestParam int id) {
+        unitService.deleteById(id);
+        return "done";
+    }
+
+    @CrossOrigin
     @RequestMapping("/get-orbit-data")
     public OrbitDisplay home3(@RequestParam int id) {
         Optional<Body> optionalBody = bodyService.findById(id);

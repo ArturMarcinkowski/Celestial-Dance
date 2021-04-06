@@ -6,14 +6,12 @@ const myBodyBox = document.querySelector("#bodies-in-my-database-box");
 let apiBodyList = new Array();
 let celestialBodies;
 let bodyCenters;
-let windows;
 
 document.addEventListener('DOMContentLoaded', async () => {
     let startUpData = await returnData("http://localhost:8080/getall/");
     displayStartUpData(startUpData);
 
     celestialBodies = document.querySelectorAll(".celestialBody");
-    windows = document.querySelectorAll('.window');
     bodyCenters = document.querySelectorAll(".celestialBodyCenter");
 
     let dataFromApi = await returnData("https://api.le-systeme-solaire.net/rest/bodies");

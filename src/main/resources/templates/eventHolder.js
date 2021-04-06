@@ -26,8 +26,7 @@ function setUpEventListeners() {
 
     bodyCenters.forEach(setBodyCenterClick())
 
-    document.querySelectorAll('.window').forEach(setWindowCloseClick);
-
+    document.querySelectorAll('.window').forEach(setWindowCloseButton);
 }
 
 
@@ -76,9 +75,28 @@ function setBodyCenterClick(bodyCenter) {
     })
 }
 
-function setWindowCloseClick(window) {
-    window.querySelector(".window-x-btn").addEventListener("click", function () {
-        window.style.visibility = "hidden";
+function setWindowDeleteButton(myWindow) {
+    myWindow.querySelector(".window-d-btn").addEventListener("click", function () {
+        sendRequest("http://localhost:8080/delete-by-id?id=" + myWindow.id.substring(7))
+        removeCelestialObject(myWindow.id.substring(7));
+        pause = !pause;
+    })
+}
+
+function setWindowCloseButton(myWindow) {
+    myWindow.querySelector(".window-x-btn").addEventListener("click", function () {
+        myWindow.style.visibility = "hidden";
+    })
+}
+
+function setWindowLookButton(myWindow) {
+    myWindow.querySelector(".window-o-btn").addEventListener("click", function () {
+        document.querySelectorAll(".celestialBody").forEach(el =>{
+            if(el.id === myWindow.id.substring(7)){
+                celestialMap.style.left =  - el.offsetLeft * (parseFloat(Math.pow(1.1, scale)))+ + window.innerWidth / 2 + "px";
+                celestialMap.style.top = -el.offsetTop * parseFloat(Math.pow(1.1, scale)) + + window.innerHeight / 2 + "px";
+            }
+        })
     })
 }
 

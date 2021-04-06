@@ -7,4 +7,5 @@ import stars.CelestialDance.model.OrbitRadius;
 @Repository
 public interface OrbitRadiusRepository extends JpaRepository<OrbitRadius, Integer> {
 
+
 }

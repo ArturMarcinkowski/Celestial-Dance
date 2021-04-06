@@ -23,6 +23,11 @@ public class BodyServiceImpl implements BodyService {
     }
 
     @Override
+    public void deleteById(int id){
+        bodyRepository.deleteById(id);
+    }
+
+    @Override
     public Optional<Body> findById(int id) {
         return bodyRepository.findById(id);
     }
