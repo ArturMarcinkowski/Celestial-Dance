@@ -36,6 +36,12 @@ public class HomeController {
     }
 
     @CrossOrigin
+    @RequestMapping("/get-one")
+    public Body getOne(@RequestParam String name) {
+        return bodyService.findByName(name).get();
+    }
+
+    @CrossOrigin
     @RequestMapping("/make-move")
     public List<Body> update() {
         return bodyService.updatePositions();

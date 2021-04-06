@@ -11,6 +11,8 @@ public interface BodyService {
 
     Optional<Body> findById(int id);
 
+    Optional<Body> findByName(String name);
+
     List<Body> getAll();
 
     Body updatePosition(Body body, List<Body> bodies);

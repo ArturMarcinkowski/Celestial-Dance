@@ -9,8 +9,8 @@ async function returnData(url) {
     return data;
 }
 
-async function sendRequest (url) {
-        await fetch(url);
+async function sendRequest(url) {
+    await fetch(url);
 }
 
 function displayPlanets(data) {
@@ -47,6 +47,7 @@ function addBody(data) {
     newCenter.className = "celestialBodyCenter";
     newCenter.style.top = data.posY + "px";
     newCenter.style.left = data.posX + "px";
+    setBodyCenterClick(newCenter);
     celestialMap.appendChild(newCenter);
 
     let newBody = document.createElement("div");
@@ -58,20 +59,27 @@ function addBody(data) {
     newBody.style.width = data.radius + "px";
     newBody.style.height = data.radius + "px";
     newBody.className = "celestialBody";
+    setCelestialBodyClick(newBody);
     celestialMap.appendChild(newBody);
-
 
     let newWindow = document.querySelector(".window").cloneNode(true);
     newWindow.id = "window-" + data.id;
     newWindow.querySelector("h2").textContent = data.name;
     newWindow.querySelector(".window-inner-text").innerHTML = generateWindowInnerText(data);
+    setWindowCloseClick(newWindow);
     myInterface.appendChild(newWindow);
-
 
     let newListElement = document.createElement("li");
     newListElement.innerText = data.name;
+    newListElement.id = "my-box-list-" + data.id;
+    setLiClick(newListElement);
     myBodyBox.firstChild.appendChild(newListElement);
 
+}
+
+async function displayBodyFromDatabase(name) {
+    let bodyData = await returnData("http://localhost:8080/get-one?name=" + name);
+    addBody(bodyData);
 }
 
 function displayBodiesListFromApi(data) {
@@ -86,10 +94,9 @@ function displayBodiesListFromApi(data) {
             }
         })
         if (addThisName) {
-            // apiBodyBox.innerHTML += el[0] + "<br/>"
-
             let newListElement = document.createElement("li");
             newListElement.innerText = el[0];
+            setApiListClick(newListElement);
             apiBodyBox.firstChild.appendChild(newListElement);
         }
     })

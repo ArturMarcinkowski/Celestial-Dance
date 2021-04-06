@@ -28,6 +28,11 @@ public class BodyServiceImpl implements BodyService {
     }
 
     @Override
+    public Optional<Body> findByName(String name){
+        return bodyRepository.findByName(name);
+    }
+
+    @Override
     public List<Body> getAll(){
         return bodyRepository.findAll();
     }
