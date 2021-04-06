@@ -79,7 +79,6 @@ function setWindowDeleteButton(myWindow) {
     myWindow.querySelector(".window-d-btn").addEventListener("click", function () {
         sendRequest("http://localhost:8080/delete-by-id?id=" + myWindow.id.substring(7))
         removeCelestialObject(myWindow.id.substring(7));
-        pause = !pause;
     })
 }
 
@@ -89,15 +88,34 @@ function setWindowCloseButton(myWindow) {
     })
 }
 
-function setWindowLookButton(myWindow) {
+function setWindowFocusButton(myWindow) {
     myWindow.querySelector(".window-o-btn").addEventListener("click", function () {
         document.querySelectorAll(".celestialBody").forEach(el =>{
             if(el.id === myWindow.id.substring(7)){
-                celestialMap.style.left =  - el.offsetLeft * (parseFloat(Math.pow(1.1, scale)))+ + window.innerWidth / 2 + "px";
-                celestialMap.style.top = -el.offsetTop * parseFloat(Math.pow(1.1, scale)) + + window.innerHeight / 2 + "px";
+                focusTurnOn(el);
             }
         })
     })
+}
+
+function focusTurnOn(body){
+    if(parseInt(body.id) === focusOn){
+        focusTurnOff();
+    }else {
+        focusOn = parseInt(body.id);
+        focusOnElement(body);
+        document.getElementById("window-" + body.id).querySelector(".window-o-btn").style.backgroundColor="brown";
+    }
+}
+
+function focusTurnOff(){
+    document.getElementById("window-" + focusOn).querySelector(".window-o-btn").style.backgroundColor="chocolate";
+    focusOn = 0;
+}
+
+function focusOnElement(el){
+    celestialMap.style.left =  - el.offsetLeft * (parseFloat(Math.pow(1.1, scale)))+ + window.innerWidth / 2 + "px";
+    celestialMap.style.top = -el.offsetTop * parseFloat(Math.pow(1.1, scale)) + + window.innerHeight / 2 + "px";
 }
 
 function setApiListClick(ListElement) {

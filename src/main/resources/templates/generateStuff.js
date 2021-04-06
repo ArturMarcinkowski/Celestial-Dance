@@ -33,7 +33,7 @@ function generateWindow(data){
     newWindow.querySelector(".window-inner-text").innerHTML = generateWindowInnerText(data);
 
     setWindowDeleteButton(newWindow);
-    setWindowLookButton(newWindow);
+    setWindowFocusButton(newWindow);
     setWindowCloseButton(newWindow);
     myInterface.appendChild(newWindow);
 }

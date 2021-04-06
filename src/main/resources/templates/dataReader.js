@@ -25,6 +25,10 @@ function displayPlanets(data) {
         let bodyWindow = document.getElementById("window-" + el.id);
         bodyWindow.querySelector(".window-inner-text").innerHTML = generateWindowInnerText(el);
 
+        if(focusOn === el.id){
+            focusOnElement(body);
+        }
+
         if (generateOrbit2) {
             let bodyCenter = document.createElement("div");
             bodyCenter.className = "celestialBodyCenter";

@@ -4,8 +4,8 @@ let mouseOnClickPosY = 0;
 let elementOnClickPosX = 0;
 let elementOnClickPosY = 0;
 let clickedElement;
-let dd;
-let ff;
+let focusOn = 0;
+
 
 function setUpMouseMovementEvents() {
 
@@ -19,6 +19,7 @@ function setUpMouseMovementEvents() {
             elementOnClickPosX = celestialMap.offsetLeft;
             elementOnClickPosY = celestialMap.offsetTop;
             clickedElement = celestialMap;
+            focusTurnOff();
         } else {
             document.querySelectorAll(".window").forEach(el => {
                 if (el.querySelector(".window-top").contains(event.target)) {
@@ -44,29 +45,26 @@ function setUpMouseMovementEvents() {
     document.addEventListener("wheel", event => {
         if (!myInterface.contains(event.target)) {
             scale -= parseInt(event.deltaY / 100);
+            let h = event.clientY;
+            let w = event.clientX;
 
-            // let a = (celestialMap.offsetTop / 1.1) - celestialMap.offsetTop ;
-            //
-            // if(event.deltaY > 0){
-            //     // celestialMap.style.top = (celestialMap.offsetTop - window.innerWidth / (event.clientY / Math.pow(1.1, -scale))) + "px";
-            //     celestialMap.style.top = celestialMap.offsetTop + (a * ((event.clientY * 2) / window.innerHeight))+ "px";
-            //     // celestialMap.style.top =  celestialMap.offsetTop + a + "px";
-            //     // celestialMap.style.top = ((celestialMap.offsetTop / 1.1) + (Math.pow(1.1, -scale) * event.clientY / 20 ))+ "px";
-            //
-            //
-            // }
-            // if(event.deltaY < 0){
-            //     // celestialMap.style.top = celestialMap.offsetTop - (a * ((event.clientY * 2) / window.innerHeight))+ "px";
-            //     celestialMap.style.top = celestialMap.offsetTop - a + (0.1 * (event.clientY / window.innerHeight))+ "px";
-            //     // celestialMap.style.top =  celestialMap.offsetTop - a + "px";
-            //
-            // }
+            if (event.deltaY > 0) {
+                celestialMap.style.top = (h + (celestialMap.offsetTop - h) / 1.1) + "px";
+                celestialMap.style.left = (w + (celestialMap.offsetLeft - w) / 1.1) + "px";
+            }
+            if (event.deltaY < 0) {
+                celestialMap.style.top = 1.1 * (celestialMap.offsetTop - h) + h + "px";
+                celestialMap.style.left = 1.1 * (celestialMap.offsetLeft + -w) + w + "px";
+            }
 
 
             celestialMap.style.transform = "scale(" + parseFloat(Math.pow(1.1, scale)) + ")";
             bodyCenters.forEach(el => {
                 el.style.transform = "scale(" + parseFloat(Math.pow(1.1, -scale)) + ")";
             })
+            if (focusOn !== 0) {
+                focusOnElement(document.getElementById(focusOn));
+            }
         }
     })
 }
