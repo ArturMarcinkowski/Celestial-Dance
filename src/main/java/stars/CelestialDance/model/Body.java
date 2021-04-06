@@ -37,4 +37,6 @@ public class Body {
     private int radius;
     private String color;
 
+    private boolean enabled;
+
 }

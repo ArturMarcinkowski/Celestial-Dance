@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     let dataFromApi = await returnData("https://api.le-systeme-solaire.net/rest/bodies");
     displayBodiesListFromApi(dataFromApi);
 
+    setUpMouseMovementEvents();
     setUpEventListeners();
 })
 

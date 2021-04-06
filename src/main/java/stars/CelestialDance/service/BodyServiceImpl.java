@@ -34,7 +34,7 @@ public class BodyServiceImpl implements BodyService {
 
     @Override
     public List<Body> updatePositions() {
-        List<Body> oldList = bodyRepository.findAll();
+        List<Body> oldList = bodyRepository.findAllByEnabled(true);
         List<Body> newList = new ArrayList<>();
         for (Body body : oldList) {
             Body updatedBody = updatePosition(body, oldList);

@@ -33,6 +33,7 @@ public class CelestialUnitService {
         body.setMassValue(data.getMass().getMassValue());
         body.setMassExponent(data.getMass().getMassExponent() - (int) Math.log10(Utils.getDataScale()));
         body.setRadius(Math.max(data.getMeanRadius(), Math.max(data.getEquaRadius(), data.getPolarRadius())) / Utils.getDataScale());
+        body.setEnabled(false);
 
         radius.setEccentricity(data.getEccentricity());
         radius.setRMin(data.getAphelion() / Utils.getDataScale());

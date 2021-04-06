@@ -10,5 +10,7 @@ import java.util.List;
 public interface BodyRepository extends JpaRepository<Body, Integer> {
     List<Body> findAll();
 
+    List<Body> findAllByEnabled(boolean enabled);
+
 
 }
