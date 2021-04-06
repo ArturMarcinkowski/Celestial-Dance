@@ -4,7 +4,8 @@ let mouseOnClickPosY = 0;
 let elementOnClickPosX = 0;
 let elementOnClickPosY = 0;
 let clickedElement;
-
+let dd;
+let ff;
 
 function setUpMouseMovementEvents() {
 
@@ -19,7 +20,7 @@ function setUpMouseMovementEvents() {
             elementOnClickPosY = celestialMap.offsetTop;
             clickedElement = celestialMap;
         } else {
-            windows.forEach(el => {
+            document.querySelectorAll(".window").forEach(el => {
                 if (el.querySelector(".window-top").contains(event.target)) {
                     clickedElement = el;
                     elementOnClickPosX = clickedElement.offsetLeft;

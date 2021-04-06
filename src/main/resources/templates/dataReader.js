@@ -25,7 +25,6 @@ function displayPlanets(data) {
         let bodyWindow = document.getElementById("window-" + el.id);
         bodyWindow.querySelector(".window-inner-text").innerHTML = generateWindowInnerText(el);
 
-
         if (generateOrbit2) {
             let bodyCenter = document.createElement("div");
             bodyCenter.className = "celestialBodyCenter";
@@ -38,48 +37,19 @@ function displayPlanets(data) {
 
 
 function displayStartUpData(data) {
-    data.forEach(addBody)
-}
-
-function addBody(data) {
-    let newCenter = document.createElement("div");
-    newCenter.id = "center-" + data.id;
-    newCenter.className = "celestialBodyCenter";
-    newCenter.style.top = data.posY + "px";
-    newCenter.style.left = data.posX + "px";
-    setBodyCenterClick(newCenter);
-    celestialMap.appendChild(newCenter);
-
-    let newBody = document.createElement("div");
-    newBody.id = data.id;
-    newBody.textContent = data.name;
-    newBody.style.top = data.posY + "px";
-    newBody.style.left = data.posX + "px";
-    newBody.style.backgroundColor = data.color
-    newBody.style.width = data.radius + "px";
-    newBody.style.height = data.radius + "px";
-    newBody.className = "celestialBody";
-    setCelestialBodyClick(newBody);
-    celestialMap.appendChild(newBody);
-
-    let newWindow = document.querySelector(".window").cloneNode(true);
-    newWindow.id = "window-" + data.id;
-    newWindow.querySelector("h2").textContent = data.name;
-    newWindow.querySelector(".window-inner-text").innerHTML = generateWindowInnerText(data);
-    setWindowCloseClick(newWindow);
-    myInterface.appendChild(newWindow);
-
-    let newListElement = document.createElement("li");
-    newListElement.innerText = data.name;
-    newListElement.id = "my-box-list-" + data.id;
-    setLiClick(newListElement);
-    myBodyBox.firstChild.appendChild(newListElement);
-
+    data.forEach(generateCelestialObject)
 }
 
 async function displayBodyFromDatabase(name) {
     let bodyData = await returnData("http://localhost:8080/get-one?name=" + name);
-    addBody(bodyData);
+    generateCelestialObject(bodyData);
+}
+
+function generateCelestialObject(data) {
+    generateBodyCenter(data);
+    generateBody(data);
+    generateWindow(data);
+    generateMyListElement(data);
 }
 
 function displayBodiesListFromApi(data) {
@@ -94,10 +64,7 @@ function displayBodiesListFromApi(data) {
             }
         })
         if (addThisName) {
-            let newListElement = document.createElement("li");
-            newListElement.innerText = el[0];
-            setApiListClick(newListElement);
-            apiBodyBox.firstChild.appendChild(newListElement);
+            generateApiListElement(el[0])
         }
     })
 }

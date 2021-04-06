@@ -21,6 +21,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     setUpMouseMovementEvents();
     setUpEventListeners();
+
+
 })
 
 

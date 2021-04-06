@@ -60,6 +60,7 @@ public class HomeController {
         return null;
     }
 
+    @CrossOrigin
     @RequestMapping("/generate-data-from-api")
     public String generateData(@RequestParam(required = false) String demand, @RequestParam(required = false) String name) {
         String url;
@@ -79,6 +80,7 @@ public class HomeController {
         return "done";
     }
 
+    @CrossOrigin
     @RequestMapping("/set-body-on-map")
     public String setBody(@RequestParam int id){
         CelestialUnit unit = unitService.findById(id);

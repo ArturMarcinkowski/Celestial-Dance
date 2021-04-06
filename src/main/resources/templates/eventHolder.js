@@ -28,25 +28,14 @@ function setUpEventListeners() {
 
     document.querySelectorAll('.window').forEach(setWindowCloseClick);
 
-
-    // apiBodyBox.querySelectorAll("li").forEach(el => {
-    //     el.addEventListener("click", function () {
-    //
-    //
-    //         addBodyToDatabase(el.innerText);
-    //         displayBodyFromDatabase(el.innerText);
-    //     });
-    // });
-
-
-
 }
 
 
 function addBodyToDatabase(name) {
-    apiBodyList.forEach(function (el) {
+    apiBodyList.forEach(async function (el) {
         if (el[0] === name) {
-            sendRequest("http://localhost:8080/generate-data-from-api?name=" + el[1]);
+            await sendRequest("http://localhost:8080/generate-data-from-api?name=" + el[1]);
+            displayBodyFromDatabase(name);
         }
     })
 
@@ -55,10 +44,9 @@ function addBodyToDatabase(name) {
             apiBodyBox.firstChild.removeChild(el);
         }
     });
-
 }
 
-function setLiClick(li) {
+function setMyListClick(li) {
     li.addEventListener("click", function () {
         document.querySelectorAll('.window').forEach(el => {
             if (el.id === "window-" + li.id.substring(12)) {
@@ -80,7 +68,7 @@ function setCelestialBodyClick(body) {
 
 function setBodyCenterClick(bodyCenter) {
     bodyCenter.addEventListener("click", function () {
-        windows.forEach(function (el) {
+        document.querySelectorAll(".window").forEach(function (el) {
             if (el.id === "window-" + bodyCenter.id.substring(7)) {
                 el.style.visibility = "visible";
             }
@@ -94,10 +82,9 @@ function setWindowCloseClick(window) {
     })
 }
 
-function setApiListClick(ListElement){
+function setApiListClick(ListElement) {
     ListElement.addEventListener("click", function () {
         addBodyToDatabase(ListElement.innerText);
-        displayBodyFromDatabase(ListElement.innerText);
     });
 }
 
