@@ -4,6 +4,7 @@ async function returnData(url) {
         const json = request.json();
         return json;
     }
+
     let data = await load(url);
     return data;
 }
@@ -13,7 +14,7 @@ function displayPlanets(data) {
         let body = document.getElementById(el.id);
         body.style.top = el.posY + "px";
         body.style.left = el.posX + "px";
-        let center = document.getElementById(el.id + "C");
+        let center = document.getElementById("center-" + el.id);
         center.style.top = el.posY + "px";
         center.style.left = el.posX + "px";
 
@@ -22,47 +23,12 @@ function displayPlanets(data) {
 
 
         if (generateOrbit2) {
-            let smallDiv = document.createElement("div");
-            smallDiv.className = "celestialBodyCenter";
-            smallDiv.style.top = el.posY + "px";
-            smallDiv.style.left = el.posX + "px";
-            // smallDiv.style.scale=1;
-            celestialMap.appendChild(smallDiv);
+            let bodyCenter = document.createElement("div");
+            bodyCenter.className = "celestialBodyCenter";
+            bodyCenter.style.top = el.posY + "px";
+            bodyCenter.style.left = el.posX + "px";
+            celestialMap.appendChild(bodyCenter);
         }
-
-
-        let polyline = document.getElementById(el.id + "-polyline");
-
-        // if(polyline != null){
-        //     let svg = document.getElementById('svg-'+el.id);
-        //     let point = svg.createSVGPoint();
-        //     point.x = el.posX;
-        //     point.y = el.posY;
-        //     polyline.points.appendItem(point);
-        // }
-
-        if (polyline != null) {
-            let svg = document.getElementById('svg-' + el.id);
-            // if(svg.offsetLeft > el.posX){
-            svg.style.left = el.posX + "px";
-            // }
-            // if(svg.offsetTop > el.posY){
-            svg.style.top = el.posY + "px";
-            // }
-            // if(svg.offsetHeight < el.posY - svg.offsetTop){
-            svg.height = (el.posY - svg.offsetTop) + "px";
-            // }
-            // if(svg.offsetWidth < el.posX - svg.offsetLeft){
-            svg.width = (el.posX - svg.offsetLeft) + "px";
-            // }
-
-
-            let polylinePoints = polyline.getAttribute("points")
-            polylinePoints += parseInt(el.posX) + ", " + parseInt(el.posY) + " ";
-            polyline.setAttribute('points', polylinePoints);
-        }
-
-
     })
 }
 
@@ -91,28 +57,26 @@ function displayOrbits(data) {
 }
 
 
-
-
 function displayStartUpData(data) {
     data.forEach(el => {
-        let newCelestialBody = document.createElement("div");
-        newCelestialBody.id = el.id;
-        newCelestialBody.textContent = el.name;
-        newCelestialBody.style.top = el.posY + "px";
-        newCelestialBody.style.left = el.posX + "px";
-        newCelestialBody.style.backgroundColor = el.color
-        newCelestialBody.style.width = el.radius + "px";
-        newCelestialBody.style.height = el.radius + "px";
-        newCelestialBody.className = "celestialBody";
-        celestialMap.appendChild(newCelestialBody);
+        let newBody = document.createElement("div");
+        newBody.id = el.id;
+        newBody.textContent = el.name;
+        newBody.style.top = el.posY + "px";
+        newBody.style.left = el.posX + "px";
+        newBody.style.backgroundColor = el.color
+        newBody.style.width = el.radius + "px";
+        newBody.style.height = el.radius + "px";
+        newBody.className = "celestialBody";
+        celestialMap.appendChild(newBody);
 
 
-        let newCelestialCenter = document.createElement("div");
-        newCelestialCenter.id = el.id + "C";
-        newCelestialCenter.className = "celestialBodyCenter";
-        newCelestialCenter.style.top = el.posY + "px";
-        newCelestialCenter.style.left = el.posX + "px";
-        celestialMap.appendChild(newCelestialCenter);
+        let newCenter = document.createElement("div");
+        newCenter.id = "center-" + el.id;
+        newCenter.className = "celestialBodyCenter";
+        newCenter.style.top = el.posY + "px";
+        newCenter.style.left = el.posX + "px";
+        celestialMap.appendChild(newCenter);
 
 
         let newWindow = document.querySelector(".window").cloneNode(true);
@@ -123,11 +87,11 @@ function displayStartUpData(data) {
     })
 }
 
-function generateWindowInnerText(data){
-    return "    <b>name:</b>   " + data.name +"<br/>" +
-        "    <b>mass:</b>   " + data.mass +"<br/>" +
-        "    <b>radius:</b> " + data.radius +"<br/>" +
-        "    <b>color:</b>  " + data.color +"<br/>" +
-        "    <b>velocity:</b>   " + parseFloat(data.velX).toFixed(6) +"<br/>";
+function generateWindowInnerText(data) {
+    return "    <b>name:</b>   " + data.name + "<br/>" +
+        "    <b>mass:</b>   " + data.mass + "<br/>" +
+        "    <b>radius:</b> " + data.radius + "<br/>" +
+        "    <b>color:</b>  " + data.color + "<br/>" +
+        "    <b>velocity:</b>   " + parseFloat(data.velX).toFixed(6) + "<br/>";
 }
 

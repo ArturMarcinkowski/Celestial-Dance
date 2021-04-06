@@ -80,6 +80,10 @@ function setUpEventListeners(){
         scale -= parseInt(event.deltaY / 100);
         // celestialMap.style.top = (celestialMap.style.top + 300 ) + "px";
         celestialMap.style.transform = "scale(" + parseFloat(Math.pow(1.1, scale)) + ")";
+
+        document.querySelectorAll(".celestialBodyCenter").forEach(function (el){
+            el.style.transform = "scale(" + parseFloat(Math.pow(1.1, -scale)) +")";
+        })
     })
 
 }
