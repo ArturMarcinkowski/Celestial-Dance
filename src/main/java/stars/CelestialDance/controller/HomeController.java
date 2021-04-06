@@ -2,8 +2,8 @@ package stars.CelestialDance.controller;
 
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
-import stars.CelestialDance.utils.BodiesDataConverter;
-import stars.CelestialDance.utils.BodyDataConverter;
+import stars.CelestialDance.utils.apiConverter.BodiesDataConverter;
+import stars.CelestialDance.utils.apiConverter.BodyDataConverter;
 import stars.CelestialDance.model.Body;
 import stars.CelestialDance.model.CelestialUnit;
 import stars.CelestialDance.model.OrbitDisplay;
@@ -32,7 +32,7 @@ public class HomeController {
     @CrossOrigin
     @RequestMapping("/getall")
     public List<Body> home2() {
-        return bodyService.updatePositions();
+        return bodyService.getAll();
     }
 
     @CrossOrigin

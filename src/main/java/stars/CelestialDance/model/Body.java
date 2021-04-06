@@ -31,7 +31,6 @@ public class Body {
 
     private int primaryBodyId;
 
-    private float mass;
     private float massValue;
     private int massExponent;
 

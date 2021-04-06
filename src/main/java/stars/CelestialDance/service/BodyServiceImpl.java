@@ -15,7 +15,7 @@ public class BodyServiceImpl implements BodyService {
 
     private final BodyRepository bodyRepository;
     private final OrbitRadiusService orbitRadiusService;
-    private final double G = 0.1;
+    private final double G = Utils.getGravitationalConstant();
 
     public BodyServiceImpl(BodyRepository bodyRepository, OrbitRadiusService orbitRadiusService) {
         this.bodyRepository = bodyRepository;
@@ -25,6 +25,11 @@ public class BodyServiceImpl implements BodyService {
     @Override
     public Optional<Body> findById(int id) {
         return bodyRepository.findById(id);
+    }
+
+    @Override
+    public List<Body> getAll(){
+        return bodyRepository.findAll();
     }
 
     @Override
@@ -48,7 +53,7 @@ public class BodyServiceImpl implements BodyService {
             float diffY = body1.getPosY() - body2.getPosY();
             float r = Utils.calcRadius(diffX, diffY);
             if (r != 0) {
-                float F = (float) G * body2.getMass() / (r * r);
+                float F = (float) Utils.calcStandGravParam(body2) / (r * r);
                 changeX += F * diffX / r;
                 changeY += F * diffY / r;
             }

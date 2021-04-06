@@ -1,4 +1,4 @@
-package stars.CelestialDance.utils;
+package stars.CelestialDance.utils.apiConverter;
 
 import lombok.Data;
 

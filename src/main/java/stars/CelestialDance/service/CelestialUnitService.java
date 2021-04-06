@@ -1,7 +1,7 @@
 package stars.CelestialDance.service;
 
 import org.springframework.stereotype.Service;
-import stars.CelestialDance.utils.BodyDataConverter;
+import stars.CelestialDance.utils.apiConverter.BodyDataConverter;
 import stars.CelestialDance.model.Body;
 import stars.CelestialDance.model.CelestialUnit;
 import stars.CelestialDance.model.OrbitRadius;
@@ -31,12 +31,12 @@ public class CelestialUnitService {
 
         body.setName(data.getEnglishName());
         body.setMassValue(data.getMass().getMassValue());
-        body.setMassExponent(data.getMass().getMassExponent());
-        body.setRadius(data.getMeanRadius());
+        body.setMassExponent(data.getMass().getMassExponent() - (int) Math.log10(Utils.getDataScale()));
+        body.setRadius(data.getMeanRadius() / Utils.getDataScale());
 
         radius.setEccentricity(data.getEccentricity());
-        radius.setRMin(data.getAphelion());
-        radius.setRMax(data.getPerihelion());
+        radius.setRMin(data.getAphelion() / Utils.getDataScale());
+        radius.setRMax(data.getPerihelion() / Utils.getDataScale());
 
         unit.setBody(body);
         unit.setOrbitRadius(radius);

@@ -1,5 +1,5 @@
-*{
-    draggable:false;
+* {
+    draggable: false;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
@@ -8,7 +8,7 @@
     user-select: none;
 }
 
-body{
+body {
     overflow: hidden;
 }
 
@@ -37,17 +37,18 @@ body{
     left: 50%;
     transform: translate(-50%, -50%);
 }
-.celestialMap {
+
+.celestial-map {
     position: absolute;
 }
 
-.orbit{
+.orbit {
     /*fill-opacity:0;*/
-    stroke:purple;
-    stroke-width:2;
+    stroke: purple;
+    stroke-width: 2;
 }
 
-#pauseButton{
+#pause-button {
     background-color: darkred;
     width: 40px; /* You can define it by % also */
     height: 40px;
@@ -55,13 +56,13 @@ body{
     position: absolute;
 }
 
-.interface{
+.interface {
     position: absolute;
     left: 0px;
     z-index: 1000;
 }
 
-.window{
+.window {
     background-color: indigo;
     visibility: hidden;
     width: 200px; /* You can define it by % also */
@@ -72,20 +73,20 @@ body{
     border-style: groove;
 }
 
-.window-top{
+.window-top {
     background-color: black;
     position: absolute;
     width: 200px; /* You can define it by % also */
     height: 30px;
 }
 
-.window-top-text{
+.window-top-text {
     color: darkorange;
     margin-left: 20px;
     margin-top: 2px;
 }
 
-.window-x-btn{
+.window-x-btn {
     background-color: chocolate;
     position: absolute;
     width: 20px;
@@ -94,11 +95,24 @@ body{
     top: 5px;
 }
 
-.window-inner-text{
+.window-inner-text {
     color: lightgray;
     margin-left: 20px;
     margin-top: 50px;
     font-size: 18px;
 }
+
+.scroll-box {
+    height: 320px;
+    width: 160px;
+    border: 1px solid #ccc;
+    font: 16px/26px Georgia, Garamond, Serif;
+    overflow: auto;
+}
+
+ul{
+    list-style: none;
+}
+
 
 
