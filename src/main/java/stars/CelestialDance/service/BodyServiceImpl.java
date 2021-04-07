@@ -23,6 +23,11 @@ public class BodyServiceImpl implements BodyService {
     }
 
     @Override
+    public List<Body> findAll(){
+        return bodyRepository.findAll();
+    }
+
+    @Override
     public void deleteById(int id){
         bodyRepository.deleteById(id);
     }
@@ -43,6 +48,16 @@ public class BodyServiceImpl implements BodyService {
         if(optionalBody.isPresent()){
             Body body = optionalBody.get();
             body.setEnabled(false);
+            bodyRepository.save(body);
+        }
+    }
+
+    @Override
+    public void setPrimaryBody(int bodyId, int primaryBodyId){
+        Optional<Body> optionalBody = bodyRepository.findById(bodyId);
+        if(optionalBody.isPresent()){
+            Body body = optionalBody.get();
+            body.setPrimaryBodyId(primaryBodyId);
             bodyRepository.save(body);
         }
     }

@@ -28,8 +28,23 @@ public class HomeController {
         this.unitService = unitService;
     }
 
-    
+    @CrossOrigin
+    @RequestMapping("/set-primary-body")
+    public String setPrimaryBody(@RequestParam int bodyId, int primaryBodyId) {
+        bodyService.setPrimaryBody(bodyId, primaryBodyId);
+        return "done";
+    }
 
+    @CrossOrigin
+    @RequestMapping("/set-all-primary-bodies-from-api")
+    public String setAll() {
+        String url = "https://api.le-systeme-solaire.net/rest/bodies";
+        RestTemplate restTemplate = new RestTemplate();
+        BodiesDataConverter multipleData = restTemplate.getForObject(url, BodiesDataConverter.class);
+        List<BodyDataConverter> data = multipleData.getBodies();
+         unitService.setAllPrimaryBodies(data);
+        return "done";
+    }
 
     @CrossOrigin
     @RequestMapping("/getall")
@@ -91,7 +106,7 @@ public class HomeController {
         if (name != null) {
             url = "https://api.le-systeme-solaire.net/rest/bodies/" + name;
             BodyDataConverter data = restTemplate.getForObject(url, BodyDataConverter.class);
-            CelestialUnit unit = unitService.processData(data);
+            CelestialUnit unit = data.convertToCelestialUnit();
             unitService.saveNewUnit(unit);
         } else if (demand.equals("planets")) {
             url = "https://api.le-systeme-solaire.net/rest/bodies";
@@ -99,7 +114,13 @@ public class HomeController {
             List<BodyDataConverter> data = multipleData.getBodies();
             List<CelestialUnit> units = unitService.processMultipleData(data, "planets");
             units.forEach(unitService::saveNewUnit);
-        }
+        } else if (demand.equals("all")) {
+        url = "https://api.le-systeme-solaire.net/rest/bodies";
+        BodiesDataConverter multipleData = restTemplate.getForObject(url, BodiesDataConverter.class);
+        List<BodyDataConverter> data = multipleData.getBodies();
+        List<CelestialUnit> units = unitService.processMultipleData(data, "none");
+        units.forEach(unitService::saveNewUnit);
+    }
         return "done";
     }
 

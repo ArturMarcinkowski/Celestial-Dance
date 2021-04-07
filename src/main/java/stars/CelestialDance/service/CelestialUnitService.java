@@ -8,6 +8,7 @@ import stars.CelestialDance.model.OrbitRadius;
 import stars.CelestialDance.utils.Utils;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -24,47 +25,70 @@ public class CelestialUnitService {
         this.displayService = displayService;
     }
 
-    public void deleteById(int id){
-        if(displayService.findById(id).isPresent()){
+    public void deleteById(int id) {
+        if (displayService.findById(id).isPresent()) {
             displayService.deleteById(id);
         }
-        if(radiusService.findById(id).isPresent()){
+        if (radiusService.findById(id).isPresent()) {
             radiusService.deleteById(id);
         }
-        if(bodyService.findById(id).isPresent()){
+        if (bodyService.findById(id).isPresent()) {
             bodyService.deleteById(id);
         }
     }
 
-    public CelestialUnit processData(BodyDataConverter data) {
-        CelestialUnit unit = new CelestialUnit();
-        Body body = new Body();
-        OrbitRadius radius = new OrbitRadius();
-
-        body.setName(data.getEnglishName());
-        body.setMassValue(data.getMass().getMassValue());
-        body.setMassExponent(data.getMass().getMassExponent() - (int) Math.log10(Utils.getDataScale()));
-        body.setRadius(Math.max(data.getMeanRadius(), Math.max(data.getEquaRadius(), data.getPolarRadius())) / Utils.getDataScale());
-        body.setEnabled(false);
-
-        radius.setEccentricity(data.getEccentricity());
-        radius.setRMin(data.getAphelion() / Utils.getDataScale());
-        radius.setRMax(data.getPerihelion() / Utils.getDataScale());
-
-        unit.setBody(body);
-        unit.setOrbitRadius(radius);
-
-        return unit;
-    }
+//    public CelestialUnit processData(BodyDataConverter data) {
+//        CelestialUnit unit = new CelestialUnit();
+//        Body body = new Body();
+//        OrbitRadius radius = new OrbitRadius();
+//
+//        body.setName(data.getEnglishName());
+//        body.setMassValue(data.getMass().getMassValue());
+//        body.setMassExponent(data.getMass().getMassExponent() - (int) Math.log10(Utils.getDataScale()));
+//        body.setRadius(Math.max(data.getMeanRadius(), Math.max(data.getEquaRadius(), data.getPolarRadius())) / Utils.getDataScale());
+//        body.setEnabled(false);
+//
+//        radius.setEccentricity(data.getEccentricity());
+//        radius.setRMin(data.getAphelion() / Utils.getDataScale());
+//        radius.setRMax(data.getPerihelion() / Utils.getDataScale());
+//
+//        unit.setBody(body);
+//        unit.setOrbitRadius(radius);
+//
+//        return unit;
+//    }
 
     public List<CelestialUnit> processMultipleData(List<BodyDataConverter> multipleData, String filter) {
         if (filter.equals("planets")) {
             return multipleData.stream()
                     .filter(d -> d.getIsPlanet().equals("true"))
-                    .map(this::processData)
+                    .map(BodyDataConverter::convertToCelestialUnit)
+                    .collect(Collectors.toList());
+        }
+        if (filter.equals("none")) {
+            return multipleData.stream()
+                    .map(BodyDataConverter::convertToCelestialUnit)
                     .collect(Collectors.toList());
         }
         return null;
+    }
+
+    public void setAllPrimaryBodies(List<BodyDataConverter> multipleData) {
+        for (BodyDataConverter data : multipleData) {
+            if (data.getAroundPlanet() != null) {
+                Optional<Body> optionalPrimaryBody = bodyService.findByName(data.getAroundPlanet().getPlanet());
+                if (optionalPrimaryBody.isPresent()) {
+                    int primaryBodyId = optionalPrimaryBody.get().getId();
+                    Optional<Body> optionalBody = bodyService.findByName(data.getEnglishName());
+                    if(optionalBody.isPresent()){
+                        Body body = optionalBody.get();
+                        body.setPrimaryBodyId(primaryBodyId);
+                        bodyService.save(body);
+                    }
+                }
+            }
+        }
+
     }
 
     public void saveNewUnit(CelestialUnit unit) {

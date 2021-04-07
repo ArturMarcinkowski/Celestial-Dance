@@ -7,11 +7,15 @@ import java.util.Optional;
 
 public interface BodyService {
 
+    List<Body> findAll();
+
     void deleteById(int id);
 
     void enable(int id);
 
     void disable(int id);
+
+    void setPrimaryBody(int bodyId, int primaryBodyId);
 
     List<Body> updatePositions();
 

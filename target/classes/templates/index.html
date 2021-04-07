@@ -14,9 +14,20 @@
 
         <div class="window-top">
             <h2 class="window-top-text"></h2>
-            <div class="window-d-btn"> <p class="eye">DEL</p></div>
-            <div class="window-o-btn"> <p class="eye">👁</p></div>
-            <div class="window-x-btn"> &nbsp;&#10006;</div>
+
+            <div class="tooltip window-d-btn">
+                <p class="eye">	&#9851;</p>
+                <span class="tooltiptext">Delete body</span>
+            </div>
+
+            <div class="tooltip window-o-btn">
+                <p class="eye">👁</p>
+                <span class="tooltiptext">Focus at body</span>
+            </div>
+            <div class="tooltip window-x-btn ">
+                &nbsp;&#10006;
+                <span class="tooltiptext">Close window</span>
+            </div>
         </div>
         <div class="window-inner-text"></div>
     </div>
@@ -28,6 +39,7 @@
 
 
 <div class="celestial-map" id="celestial-map">
+
 </div>
 
 <script type="text/JavaScript" src="app.js"></script>
@@ -36,5 +48,6 @@
 <script type="text/JavaScript" src="dataReader.js"></script>
 <script type="text/JavaScript" src="generateStuff.js"></script>
 <script type="text/JavaScript" src="deleteStuff.js"></script>
+<script type="text/JavaScript" src="focus.js"></script>
 </body>
 </html>
