@@ -9,6 +9,10 @@ public interface BodyService {
 
     void deleteById(int id);
 
+    void enable(int id);
+
+    void disable(int id);
+
     List<Body> updatePositions();
 
     Optional<Body> findById(int id);

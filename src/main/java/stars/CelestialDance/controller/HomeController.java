@@ -28,11 +28,27 @@ public class HomeController {
         this.unitService = unitService;
     }
 
+    
+
 
     @CrossOrigin
     @RequestMapping("/getall")
     public List<Body> home2() {
         return bodyService.getAll();
+    }
+
+    @CrossOrigin
+    @RequestMapping("/enable")
+    public String enable(@RequestParam int id) {
+        bodyService.enable(id);
+        return "done";
+    }
+
+    @CrossOrigin
+    @RequestMapping("/disable")
+    public String disable(@RequestParam int id) {
+        bodyService.disable(id);
+        return "done";
     }
 
     @CrossOrigin

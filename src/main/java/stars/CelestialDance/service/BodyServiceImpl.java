@@ -28,6 +28,26 @@ public class BodyServiceImpl implements BodyService {
     }
 
     @Override
+    public void enable(int id){
+        Optional<Body> optionalBody = bodyRepository.findById(id);
+        if(optionalBody.isPresent()){
+            Body body = optionalBody.get();
+            body.setEnabled(true);
+            bodyRepository.save(body);
+        }
+    }
+
+    @Override
+    public void disable(int id){
+        Optional<Body> optionalBody = bodyRepository.findById(id);
+        if(optionalBody.isPresent()){
+            Body body = optionalBody.get();
+            body.setEnabled(false);
+            bodyRepository.save(body);
+        }
+    }
+
+    @Override
     public Optional<Body> findById(int id) {
         return bodyRepository.findById(id);
     }
