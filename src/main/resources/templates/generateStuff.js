@@ -45,8 +45,10 @@ function generateMyListElement(data){
     newListElement.id = "my-box-list-" + data.id;
 
     setMyListClick(newListElement);
-    myBodyBox.firstChild.appendChild(newListElement);
+    myBodyBox.querySelector("ul").appendChild(newListElement);
 }
+
+
 
 
 function generateApiListElement(name){
@@ -54,6 +56,6 @@ function generateApiListElement(name){
     newListElement.innerText = name;
 
     setApiListClick(newListElement);
-    apiBodyBox.firstChild.appendChild(newListElement);
+    apiBodyBox.querySelector("ul").appendChild(newListElement);
 }
 

@@ -12,7 +12,10 @@ function focusTurnOn(body) {
 }
 
 function focusTurnOff() {
-    document.getElementById("window-" + focusOn).querySelector(".window-o-btn").style.backgroundColor = "chocolate";
+    let element = document.getElementById("window-" + focusOn);
+    if(element !== null){
+        element.querySelector(".window-o-btn").style.backgroundColor = "chocolate";
+    }
     focusOn = 0;
 }
 
