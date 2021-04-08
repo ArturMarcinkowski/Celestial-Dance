@@ -3,6 +3,7 @@ const pauseButton = document.querySelector('#pause-button');
 const myInterface = document.querySelector('.interface');
 const apiBodyBox = document.querySelector("#bodies-from-api-box");
 const myBodyBox = document.querySelector("#bodies-in-my-database-box");
+const myWindows = document.querySelector(".all-windows");
 let apiBodyList = new Array();
 let celestialBodies;
 let bodyCenters;

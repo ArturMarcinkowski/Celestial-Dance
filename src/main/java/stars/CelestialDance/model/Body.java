@@ -39,4 +39,8 @@ public class Body {
 
     private boolean enabled;
 
+    public boolean getEnabled(){
+        return this.enabled;
+    }
+
 }

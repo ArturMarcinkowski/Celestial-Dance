@@ -8,7 +8,7 @@ function focusTurnOn(body) {
         focusOn = parseInt(body.id);
         focusOnElement(body);
         // document.getElementById("window-" + body.id).querySelector(".window-o-btn").style.backgroundColor = "brown";
-        document.getElementById("window-" + body.id).querySelector(".window-o-btn").addClass("window-button-clicked");
+        document.getElementById("window-" + body.id).querySelector(".window-o-btn").classList.add("window-button-clicked");
     }
 }
 
@@ -16,7 +16,7 @@ function focusTurnOff() {
     let element = document.getElementById("window-" + focusOn);
     if(element !== null){
         // element.querySelector(".window-o-btn").style.backgroundColor = "chocolate";
-        element.querySelector(".window-o-btn").removeClass("window-button-clicked");
+        element.querySelector(".window-o-btn").classList.remove("window-button-clicked");
     }
     focusOn = 0;
 }

@@ -86,7 +86,7 @@ body {
     margin-top: 2px;
 }
 
-.window-d-btn{
+.window-d-btn {
     font-size: 30px;
     right: 55px;
     top: 5px;
@@ -97,10 +97,10 @@ body {
     top: 5px;
 }
 
-.eye{
+.eye {
     font-size: 18px;
     position: absolute;
-    top:-23px
+    top: -23px
 }
 
 .window-x-btn {
@@ -108,12 +108,12 @@ body {
     top: 5px;
 }
 
-.window-x-btn-text{
+.window-x-btn-text {
     position: absolute;
-    left:-2px;
+    left: -2px;
 }
 
-.window-enable-btn{
+.window-enable-btn {
     right: 5px;
     top: 30px;
 }
@@ -144,14 +144,29 @@ body {
     background-color: #ae561b;
 }
 
-.window-button-clicked{
-    background-color:brown;
+.window-button-clicked {
+    background-color: brown;
 }
 
 .window-button-clicked:hover {
-    background-color:brown;
+    background-color: darkred;
 }
 
+.window-enable-btn-on{
+    background-color: green;
+}
+
+.window-enable-btn-off{
+    background-color: brown;
+}
+
+.window-enable-btn-on:hover{
+    background-color: darkgreen;
+}
+
+.window-enable-btn-off:hover{
+    background-color: darkred;
+}
 
 
 .scroll-box {
@@ -162,11 +177,9 @@ body {
     overflow: auto;
 }
 
-ul{
+ul {
     list-style: none;
 }
-
-
 
 
 .tooltip {
@@ -184,7 +197,7 @@ ul{
     text-align: center;
     padding: 5px 0;
     border-radius: 6px;
-    top:30px;
+    top: 30px;
     font-size: 12px;
     font-family: "Arial Black";
     /* Position the tooltip text - see examples below! */

@@ -67,6 +67,12 @@ public class HomeController {
     }
 
     @CrossOrigin
+    @RequestMapping("/is-body-enabled")
+    public boolean isBodyEnabled(@RequestParam int id){
+        return bodyService.isBodyEnabled(id);
+    }
+
+    @CrossOrigin
     @RequestMapping("/get-one")
     public Body getOne(@RequestParam String name) {
         return bodyService.findByName(name).get();
@@ -108,6 +114,7 @@ public class HomeController {
             BodyDataConverter data = restTemplate.getForObject(url, BodyDataConverter.class);
             CelestialUnit unit = data.convertToCelestialUnit();
             unitService.saveNewUnit(unit);
+            return String.valueOf(unit.getBody().getId());
         } else if (demand.equals("planets")) {
             url = "https://api.le-systeme-solaire.net/rest/bodies";
             BodiesDataConverter multipleData = restTemplate.getForObject(url, BodiesDataConverter.class);

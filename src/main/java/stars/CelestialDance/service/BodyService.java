@@ -15,6 +15,8 @@ public interface BodyService {
 
     void disable(int id);
 
+    boolean isBodyEnabled(int id);
+
     void setPrimaryBody(int bodyId, int primaryBodyId);
 
     List<Body> updatePositions();

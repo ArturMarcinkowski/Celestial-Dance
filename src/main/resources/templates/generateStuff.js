@@ -35,6 +35,8 @@ function generateWindow(data){
     setWindowDeleteButton(newWindow);
     setWindowFocusButton(newWindow);
     setWindowCloseButton(newWindow);
+    setWindowEnableButton(newWindow, data.enabled);
+
     myInterface.appendChild(newWindow);
 }
 

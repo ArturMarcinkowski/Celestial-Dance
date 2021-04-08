@@ -37,10 +37,15 @@ function setUpEventListeners() {
 
 
 function addBodyToDatabase(name) {
+    let id = 0;
     apiBodyList.forEach(async function (el) {
         if (el[0] === name) {
-            await sendRequest("http://localhost:8080/generate-data-from-api?name=" + el[1]);
-            displayBodyFromDatabase(name);
+            id = await sendRequest("http://localhost:8080/generate-data-from-api?name=" + el[1]);
+
+            displayBodyFromDatabase(name).then(function () {
+                document.getElementById(String("window-" + id)).style.visibility = "visible"; /////////not working?????
+            });
+
         }
     })
     apiBodyBox.querySelectorAll("li").forEach(el => {
@@ -54,32 +59,29 @@ function addBodyToDatabase(name) {
 
 function setMyListClick(li) {
     li.addEventListener("click", function () {
-        document.querySelectorAll('.window').forEach(el => {
-            if (el.id === "window-" + li.id.substring(12)) {
-                el.style.visibility = "visible";
-            }
-        })
+        // document.querySelectorAll('.window').forEach(el => {
+        //     if (el.id === "window-" + li.id.substring(12)) {
+        //         el.style.visibility = "visible";
+        //     }
+        // })
+        document.getElementById("window-" + li.id.substring(12)).style.visibility = "visible";
     })
 }
 
 function setCelestialBodyClick(body) {
     body.addEventListener("click", function () {
-        document.querySelectorAll('.window').forEach(el => {
-            if (el.id === "window-" + body.id) {
-                el.style.visibility = "visible";
-            }
-        })
+        document.getElementById("window-" + body.id).style.visibility = "visible";
     })
 }
 
 function setBodyCenterClick(bodyCenter) {
     bodyCenter.addEventListener("click", function () {
-        document.querySelectorAll(".window").forEach(function (el) {
-            if (el.id === "window-" + bodyCenter.id.substring(7)) {
-                el.style.visibility = "visible";
-            }
-        })
-        document.getElementById()
+        // document.querySelectorAll(".window").forEach(function (el) {
+        //     if (el.id === "window-" + bodyCenter.id.substring(7)) {
+        //         el.style.visibility = "visible";
+        //     }
+        // })
+        document.getElementById("window-" + bodyCenter.id.substring(7)).style.visibility = "visible";
     })
 }
 
@@ -107,6 +109,27 @@ function setWindowFocusButton(myWindow) {
     })
 }
 
+function setWindowEnableButton(myWindow, isEnabled) {
+    let myButton = myWindow.querySelector(".window-enable-btn");
+
+    if(isEnabled){
+        myButton.classList.add("window-enable-btn-on");
+    }else{
+        myButton.classList.add("window-enable-btn-off");
+    }
+
+    myButton.addEventListener("click", function () {
+        if (myButton.classList.contains("window-enable-btn-off")) {
+            sendRequest("http://localhost:8080/enable?id=" + myWindow.id.substring(7));
+            myButton.classList.add("window-enable-btn-on");
+            myButton.classList.remove("window-enable-btn-off");
+        }else if(myButton.classList.contains("window-enable-btn-on")){
+            sendRequest("http://localhost:8080/disable?id=" + myWindow.id.substring(7));
+            myButton.classList.add("window-enable-btn-off");
+            myButton.classList.remove("window-enable-btn-on");
+        }
+    })
+}
 
 function setApiListClick(listElement) {
     listElement.addEventListener("click", function () {
@@ -122,13 +145,13 @@ function setApiListClick(listElement) {
 // }
 
 
-function filterSearchLists(){
+function filterSearchLists() {
     document.querySelectorAll(".scroll-box-frame").forEach(frame => {
         let searchText = frame.querySelector(".scroll-box-search").value;
-        frame.querySelectorAll("li").forEach(li =>{
-            if(li.textContent.includes(searchText)){
+        frame.querySelectorAll("li").forEach(li => {
+            if (li.textContent.includes(searchText)) {
                 li.style.visibility = "visible";
-            }else {
+            } else {
                 li.style.visibility = "hidden";
             }
         })

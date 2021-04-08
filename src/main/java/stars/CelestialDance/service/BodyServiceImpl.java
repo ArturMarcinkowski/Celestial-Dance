@@ -53,6 +53,12 @@ public class BodyServiceImpl implements BodyService {
     }
 
     @Override
+    public boolean isBodyEnabled(int id){
+        Optional<Body> optionalBody = bodyRepository.findById(id);
+        return optionalBody.map(Body::getEnabled).orElse(false);
+    }
+
+    @Override
     public void setPrimaryBody(int bodyId, int primaryBodyId){
         Optional<Body> optionalBody = bodyRepository.findById(bodyId);
         if(optionalBody.isPresent()){
