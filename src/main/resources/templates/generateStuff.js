@@ -56,6 +56,6 @@ function generateApiListElement(name){
     newListElement.innerText = name;
 
     setApiListClick(newListElement);
-    apiBodyBox.querySelector("ul").appendChild(newListElement);
+    apiBodyBox.querySelector("ul").prepend(newListElement);
 }
 

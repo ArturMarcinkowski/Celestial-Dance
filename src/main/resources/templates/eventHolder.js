@@ -77,6 +77,7 @@ function setBodyCenterClick(bodyCenter) {
                 el.style.visibility = "visible";
             }
         })
+        document.getElementById()
     })
 }
 

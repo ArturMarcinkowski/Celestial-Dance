@@ -88,19 +88,11 @@ body {
 
 .window-d-btn{
     font-size: 30px;
-    background-color: chocolate;
-    position: absolute;
-    width: 20px;
-    height: 20px;
     right: 55px;
     top: 5px;
 }
 
 .window-o-btn {
-    background-color: chocolate;
-    position: absolute;
-    width: 20px;
-    height: 20px;
     right: 30px;
     top: 5px;
 }
@@ -112,12 +104,20 @@ body {
 }
 
 .window-x-btn {
+    right: 5px;
+    top: 5px;
+}
+
+.window-enable-btn{
+    right: 5px;
+    top: 30px;
+}
+
+.window-btn{
     background-color: chocolate;
     position: absolute;
     width: 20px;
     height: 20px;
-    right: 5px;
-    top: 5px;
 }
 
 .window-inner-text {
@@ -126,6 +126,38 @@ body {
     margin-top: 50px;
     font-size: 18px;
 }
+
+
+
+.button {
+    background-color: chocolate;
+    text-align: center;
+    text-decoration: none;
+    width: 20px;
+    height: 20px;
+    font-size: 14px;
+    cursor: pointer;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    outline: none;
+}
+
+
+.button:hover {
+    background-color: #ae561b;
+}
+
+.button-clicked{
+    background-color:brown;
+}
+
+.button-clicked:hover {
+    background-color:brown;
+}
+
+
 
 .scroll-box {
     height: 320px;
@@ -169,6 +201,7 @@ ul{
 .tooltip:hover .tooltiptext {
     visibility: visible;
 }
+
 
 
 
