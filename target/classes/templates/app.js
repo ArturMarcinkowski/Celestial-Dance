@@ -7,6 +7,7 @@ let apiBodyList = new Array();
 let celestialBodies;
 let bodyCenters;
 
+
 document.addEventListener('DOMContentLoaded', async () => {
     let startUpData = await returnData("http://localhost:8080/getall/");
     displayStartUpData(startUpData);

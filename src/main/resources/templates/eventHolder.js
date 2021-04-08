@@ -48,6 +48,8 @@ function addBodyToDatabase(name) {
             apiBodyBox.querySelector("ul").removeChild(el);
         }
     });
+
+
 }
 
 function setMyListClick(li) {

@@ -98,9 +98,9 @@ body {
 }
 
 .eye{
-    font-size: 20px;
+    font-size: 18px;
     position: absolute;
-    top:-25px
+    top:-23px
 }
 
 .window-x-btn {
@@ -108,16 +108,14 @@ body {
     top: 5px;
 }
 
+.window-x-btn-text{
+    position: absolute;
+    left:-2px;
+}
+
 .window-enable-btn{
     right: 5px;
     top: 30px;
-}
-
-.window-btn{
-    background-color: chocolate;
-    position: absolute;
-    width: 20px;
-    height: 20px;
 }
 
 .window-inner-text {
@@ -127,9 +125,7 @@ body {
     font-size: 18px;
 }
 
-
-
-.button {
+.window-button {
     background-color: chocolate;
     text-align: center;
     text-decoration: none;
@@ -144,16 +140,15 @@ body {
     outline: none;
 }
 
-
-.button:hover {
+.window-button:hover {
     background-color: #ae561b;
 }
 
-.button-clicked{
+.window-button-clicked{
     background-color:brown;
 }
 
-.button-clicked:hover {
+.window-button-clicked:hover {
     background-color:brown;
 }
 
