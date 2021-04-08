@@ -6,11 +6,15 @@ import stars.CelestialDance.model.CelestialUnit;
 import stars.CelestialDance.model.OrbitRadius;
 import stars.CelestialDance.utils.Utils;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Data
 public class BodyDataConverter {
     private String englishName;
     private BodyMassDataConverter mass;
     private AroundPlanetConverter aroundPlanet;
+    private List<MoonConverter> moons;
     private float density;
     private int meanRadius;
     private int equaRadius;
@@ -28,10 +32,10 @@ public class BodyDataConverter {
         OrbitRadius radius = new OrbitRadius();
 
         body.setName(this.getEnglishName());
-        if(this.getMass() != null) {
+        if (this.getMass() != null) {
             body.setMassValue(this.getMass().getMassValue());
             body.setMassExponent(this.getMass().getMassExponent() - (int) Math.log10(Utils.getDataScale()));
-        }else{
+        } else {
             body.setMassValue(1);
             body.setMassExponent(1);
         }
@@ -46,6 +50,17 @@ public class BodyDataConverter {
         unit.setOrbitRadius(radius);
 
         return unit;
+    }
+
+    public List<String> getMoonNames() {
+        List<String> names = new ArrayList<>();
+        for (MoonConverter oneMoon : moons) {
+            if (!oneMoon.getRel().equals("https://api.le-systeme-solaire.net/rest/bodies/s2011j1") &&
+                    !oneMoon.getRel().contains("https://api.le-systeme-solaire.net/rest/bodies/s2004s")) { //this two not working, probably corrupted
+                    names.add(oneMoon.getMoonName());
+                }
+        }
+        return names;
     }
 
 }

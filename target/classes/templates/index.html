@@ -9,6 +9,15 @@
 <body>
 
 <div class="interface">
+    <div class="whole-window-screen">
+        <div class="scroll-box-frame primary-bodies-frame" style="border:1px solid black; background-color: #05054f; color:lightgray; position: center;">
+            <input type="search" class="scroll-box-search" placeholder="search:" size="18px"style="background-color: #0b0b1a">
+            <div class="scroll-box" id="primary-bodies-box">
+                <ul></ul>
+            </div>
+        </div>
+    </div>
+
     <div id="pause-button" class="btn"></div>
 
     <div class="all-windows">
@@ -32,8 +41,13 @@
                 </button>
 
                 <button class="tooltip window-button window-enable-btn">
-                    &nbsp;&#10006;
+                   <b> ☈</b>
                     <span class="tooltiptext">Simulate body</span>
+                </button>
+
+                <button class="tooltip window-button window-primary-body-btn">
+                    <b> ☀</b>
+                    <span class="tooltiptext">Set primary body</span>
                 </button>
 
 

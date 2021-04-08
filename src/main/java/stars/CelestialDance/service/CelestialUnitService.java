@@ -4,7 +4,6 @@ import org.springframework.stereotype.Service;
 import stars.CelestialDance.utils.apiConverter.BodyDataConverter;
 import stars.CelestialDance.model.Body;
 import stars.CelestialDance.model.CelestialUnit;
-import stars.CelestialDance.model.OrbitRadius;
 import stars.CelestialDance.utils.Utils;
 
 import java.util.List;
@@ -73,22 +72,52 @@ public class CelestialUnitService {
         return null;
     }
 
+//    public void setAllPrimaryBodies(List<BodyDataConverter> multipleData) {
+//        for (BodyDataConverter data : multipleData) {
+//            if (data.getAroundPlanet() != null) {
+//                Optional<Body> optionalPrimaryBody = bodyService.findByName(data.getAroundPlanet().getPlanet());
+//                if (optionalPrimaryBody.isPresent()) {
+//                    int primaryBodyId = optionalPrimaryBody.get().getId();
+//                    Optional<Body> optionalBody = bodyService.findByName(data.getEnglishName());
+//                    if(optionalBody.isPresent()){
+//                        Body body = optionalBody.get();
+//                        body.setPrimaryBodyId(primaryBodyId);
+//                        bodyService.save(body);
+//                    }
+//                }
+//            }
+//        }
+//
+//    }
+
     public void setAllPrimaryBodies(List<BodyDataConverter> multipleData) {
+        int sunId = bodyService.findByName("Sun").get().getId();
+
         for (BodyDataConverter data : multipleData) {
-            if (data.getAroundPlanet() != null) {
-                Optional<Body> optionalPrimaryBody = bodyService.findByName(data.getAroundPlanet().getPlanet());
+            if(data.getIsPlanet() == "true"){
+                Optional<Body> optionalBody = bodyService.findByName(data.getEnglishName());
+                if (optionalBody.isPresent()) {
+                    Body body = optionalBody.get();
+                    body.setPrimaryBodyId(sunId);
+                    bodyService.save(body);
+                }
+            }
+            if(data.getMoons() != null){
+                Optional<Body> optionalPrimaryBody = bodyService.findByName(data.getEnglishName());
                 if (optionalPrimaryBody.isPresent()) {
                     int primaryBodyId = optionalPrimaryBody.get().getId();
-                    Optional<Body> optionalBody = bodyService.findByName(data.getEnglishName());
-                    if(optionalBody.isPresent()){
-                        Body body = optionalBody.get();
-                        body.setPrimaryBodyId(primaryBodyId);
-                        bodyService.save(body);
+                    List<String> moonNames = data.getMoonNames();
+                    for(String moonName:moonNames){
+                        Optional<Body> optionalBody = bodyService.findByName(moonName);
+                        if(optionalBody.isPresent()){
+                            Body body = optionalBody.get();
+                            body.setPrimaryBodyId(primaryBodyId);
+                            bodyService.save(body);
+                        }
                     }
                 }
             }
         }
-
     }
 
     public void saveNewUnit(CelestialUnit unit) {

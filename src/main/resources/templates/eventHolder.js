@@ -3,6 +3,7 @@ let generateOrbit2 = false;
 let timer = 0;
 let scale = 0;
 let pause = true
+let bodyPrimaryBodyId = 0;
 
 function setUpEventListeners() {
 
@@ -59,14 +60,18 @@ function addBodyToDatabase(name) {
 
 function setMyListClick(li) {
     li.addEventListener("click", function () {
-        // document.querySelectorAll('.window').forEach(el => {
-        //     if (el.id === "window-" + li.id.substring(12)) {
-        //         el.style.visibility = "visible";
-        //     }
-        // })
         document.getElementById("window-" + li.id.substring(12)).style.visibility = "visible";
     })
 }
+
+function setPrimaryBodyListClick(li) {
+    li.addEventListener("click", function () {
+        wholeScreenDiv.style.visibility="hidden";
+        sendRequest("http://localhost:8080/set-primary-body?bodyId=" + bodyPrimaryBodyId +"&primaryBodyId=" + li.id.substring(17));
+        bodyPrimaryBodyId = 0;
+    })
+}
+
 
 function setCelestialBodyClick(body) {
     body.addEventListener("click", function () {
@@ -76,11 +81,6 @@ function setCelestialBodyClick(body) {
 
 function setBodyCenterClick(bodyCenter) {
     bodyCenter.addEventListener("click", function () {
-        // document.querySelectorAll(".window").forEach(function (el) {
-        //     if (el.id === "window-" + bodyCenter.id.substring(7)) {
-        //         el.style.visibility = "visible";
-        //     }
-        // })
         document.getElementById("window-" + bodyCenter.id.substring(7)).style.visibility = "visible";
     })
 }
@@ -112,9 +112,9 @@ function setWindowFocusButton(myWindow) {
 function setWindowEnableButton(myWindow, isEnabled) {
     let myButton = myWindow.querySelector(".window-enable-btn");
 
-    if(isEnabled){
+    if (isEnabled) {
         myButton.classList.add("window-enable-btn-on");
-    }else{
+    } else {
         myButton.classList.add("window-enable-btn-off");
     }
 
@@ -123,11 +123,25 @@ function setWindowEnableButton(myWindow, isEnabled) {
             sendRequest("http://localhost:8080/enable?id=" + myWindow.id.substring(7));
             myButton.classList.add("window-enable-btn-on");
             myButton.classList.remove("window-enable-btn-off");
-        }else if(myButton.classList.contains("window-enable-btn-on")){
+        } else if (myButton.classList.contains("window-enable-btn-on")) {
             sendRequest("http://localhost:8080/disable?id=" + myWindow.id.substring(7));
             myButton.classList.add("window-enable-btn-off");
             myButton.classList.remove("window-enable-btn-on");
         }
+    })
+}
+
+function setWindowSetOnMapButton(myWindow){
+    myWindow.querySelector(".window-set-place-btn").addEventListener("click", function (){
+        sendRequest("http://localhost:8080/set-body-on-map?id=" + myWindow.id.substring(7));
+    })
+}
+
+
+function setWindowPrimaryBodyButton(myWindow) {
+    myWindow.querySelector(".window-primary-body-btn").addEventListener("click", function () {
+        bodyPrimaryBodyId = myWindow.id.substring(7);
+        wholeScreenDiv.style.visibility = "visible";
     })
 }
 

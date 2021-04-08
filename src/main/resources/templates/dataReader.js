@@ -54,6 +54,7 @@ function generateCelestialObject(data) {
     generateBody(data);
     generateWindow(data);
     generateMyListElement(data);
+    generatePrimaryBodiesListElement(data);
 }
 
 function displayBodiesListFromApi(data) {

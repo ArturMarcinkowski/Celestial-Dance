@@ -36,6 +36,8 @@ function generateWindow(data){
     setWindowFocusButton(newWindow);
     setWindowCloseButton(newWindow);
     setWindowEnableButton(newWindow, data.enabled);
+    setWindowSetOnMapButton(newWindow);
+    setWindowPrimaryBodyButton(newWindow);
 
     myInterface.appendChild(newWindow);
 }
@@ -50,7 +52,13 @@ function generateMyListElement(data){
     myBodyBox.querySelector("ul").appendChild(newListElement);
 }
 
-
+function generatePrimaryBodiesListElement(data){
+    let newListElement = document.createElement("li");
+    newListElement.innerText = data.name;
+    newListElement.id = "primary-box-list-" + data.id;
+    setPrimaryBodyListClick(newListElement);
+    primaryBodyBox.querySelector("ul").appendChild(newListElement);
+}
 
 
 function generateApiListElement(name){
@@ -60,4 +68,6 @@ function generateApiListElement(name){
     setApiListClick(newListElement);
     apiBodyBox.querySelector("ul").prepend(newListElement);
 }
+
+
 

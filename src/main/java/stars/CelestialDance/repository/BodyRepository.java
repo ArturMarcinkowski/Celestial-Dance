@@ -16,4 +16,5 @@ public interface BodyRepository extends JpaRepository<Body, Integer> {
     List<Body> findAllByEnabled(boolean enabled);
 
 
+
 }
