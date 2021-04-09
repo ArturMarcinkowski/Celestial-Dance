@@ -35,7 +35,6 @@ setInterval(async () => {
         let bodiesData = await returnData("http://localhost:8080/make-move/");
         displayPlanets(bodiesData);
 
-
     }
-}, 40);
+}, 50);
 

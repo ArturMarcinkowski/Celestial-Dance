@@ -94,7 +94,7 @@ public class CelestialUnitService {
         int sunId = bodyService.findByName("Sun").get().getId();
 
         for (BodyDataConverter data : multipleData) {
-            if(data.getIsPlanet() == "true"){
+            if (data.getIsPlanet() == "true") {
                 Optional<Body> optionalBody = bodyService.findByName(data.getEnglishName());
                 if (optionalBody.isPresent()) {
                     Body body = optionalBody.get();
@@ -102,14 +102,14 @@ public class CelestialUnitService {
                     bodyService.save(body);
                 }
             }
-            if(data.getMoons() != null){
+            if (data.getMoons() != null) {
                 Optional<Body> optionalPrimaryBody = bodyService.findByName(data.getEnglishName());
                 if (optionalPrimaryBody.isPresent()) {
                     int primaryBodyId = optionalPrimaryBody.get().getId();
                     List<String> moonNames = data.getMoonNames();
-                    for(String moonName:moonNames){
+                    for (String moonName : moonNames) {
                         Optional<Body> optionalBody = bodyService.findByName(moonName);
-                        if(optionalBody.isPresent()){
+                        if (optionalBody.isPresent()) {
                             Body body = optionalBody.get();
                             body.setPrimaryBodyId(primaryBodyId);
                             bodyService.save(body);
@@ -171,8 +171,8 @@ public class CelestialUnitService {
         unit.getBody().setPosX((float) (body2.getPosX() + Math.sin(angle) * R));
         unit.getBody().setPosY((float) (body2.getPosY() - Math.cos(angle) * R));
 
-        unit.getBody().setVelX((float) (-v * Math.cos(angle)));
-        unit.getBody().setVelY((float) (-v * Math.sin(angle)));
+        unit.getBody().setVelX((float) (-v * Math.cos(angle) + body2.getVelX()));
+        unit.getBody().setVelY((float) (-v * Math.sin(angle) + body2.getVelY()));
 
         return unit;
     }
