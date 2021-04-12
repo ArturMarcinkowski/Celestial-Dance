@@ -1,12 +1,7 @@
 package stars.CelestialDance.controller;
 
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
-import stars.CelestialDance.utils.apiConverter.BodiesDataConverter;
-import stars.CelestialDance.utils.apiConverter.BodyDataConverter;
 import stars.CelestialDance.model.Body;
-import stars.CelestialDance.model.CelestialUnit;
-import stars.CelestialDance.model.OrbitDisplay;
 import stars.CelestialDance.service.BodyService;
 import stars.CelestialDance.service.CelestialUnitService;
 import stars.CelestialDance.service.OrbitDisplayService;
@@ -29,53 +24,9 @@ public class HomeController {
     }
 
     @CrossOrigin
-    @RequestMapping("/set-primary-body")
-    public String setPrimaryBody(@RequestParam int bodyId, int primaryBodyId) {
-        bodyService.setPrimaryBody(bodyId, primaryBodyId);
-        return "done";
-    }
-
-    @CrossOrigin
-    @RequestMapping("/set-all-primary-bodies-from-api")
-    public String setAll() {
-        String url = "https://api.le-systeme-solaire.net/rest/bodies";
-        RestTemplate restTemplate = new RestTemplate();
-        BodiesDataConverter multipleData = restTemplate.getForObject(url, BodiesDataConverter.class);
-        List<BodyDataConverter> data = multipleData.getBodies();
-         unitService.setAllPrimaryBodies(data);
-        return "done";
-    }
-
-    @CrossOrigin
-    @RequestMapping("/getall")
-    public List<Body> home2() {
-        return bodyService.getAll();
-    }
-
-    @CrossOrigin
-    @RequestMapping("/enable")
-    public String enable(@RequestParam int id) {
-        bodyService.enable(id);
-        return "done";
-    }
-
-    @CrossOrigin
-    @RequestMapping("/disable")
-    public String disable(@RequestParam int id) {
-        bodyService.disable(id);
-        return "done";
-    }
-
-    @CrossOrigin
-    @RequestMapping("/is-body-enabled")
-    public boolean isBodyEnabled(@RequestParam int id){
-        return bodyService.isBodyEnabled(id);
-    }
-
-    @CrossOrigin
-    @RequestMapping("/get-one")
-    public Body getOne(@RequestParam String name) {
-        return bodyService.findByName(name).get();
+    @RequestMapping("/")
+    public String hello() {
+        return "Hello";
     }
 
     @CrossOrigin
@@ -91,53 +42,8 @@ public class HomeController {
         return "done";
     }
 
-    @CrossOrigin
-    @RequestMapping("/get-orbit-data")
-    public OrbitDisplay home3(@RequestParam int id) {
-        Optional<Body> optionalBody = bodyService.findById(id);
-        if (optionalBody.isPresent()) {
-            Body body1 = optionalBody.get();
-            if (body1.getPrimaryBodyId() != 0) {
-                return orbitDisplayService.calculateAllData(body1, bodyService.findById(body1.getPrimaryBodyId()).get());
-            }
-        }
-        return null;
-    }
 
-    @CrossOrigin
-    @RequestMapping("/generate-data-from-api")
-    public String generateData(@RequestParam(required = false) String demand, @RequestParam(required = false) String name) {
-        String url;
-        RestTemplate restTemplate = new RestTemplate();
-        if (name != null) {
-            url = "https://api.le-systeme-solaire.net/rest/bodies/" + name;
-            BodyDataConverter data = restTemplate.getForObject(url, BodyDataConverter.class);
-            CelestialUnit unit = data.convertToCelestialUnit();
-            unitService.saveNewUnit(unit);
-            return String.valueOf(unit.getBody().getId());
-        } else if (demand.equals("planets")) {
-            url = "https://api.le-systeme-solaire.net/rest/bodies";
-            BodiesDataConverter multipleData = restTemplate.getForObject(url, BodiesDataConverter.class);
-            List<BodyDataConverter> data = multipleData.getBodies();
-            List<CelestialUnit> units = unitService.processMultipleData(data, "planets");
-            units.forEach(unitService::saveNewUnit);
-        } else if (demand.equals("all")) {
-        url = "https://api.le-systeme-solaire.net/rest/bodies";
-        BodiesDataConverter multipleData = restTemplate.getForObject(url, BodiesDataConverter.class);
-        List<BodyDataConverter> data = multipleData.getBodies();
-        List<CelestialUnit> units = unitService.processMultipleData(data, "none");
-        units.forEach(unitService::saveNewUnit);
-    }
-        return "done";
-    }
 
-    @CrossOrigin
-    @RequestMapping("/set-body-on-map")
-    public String setBody(@RequestParam int id){
-        CelestialUnit unit = unitService.findById(id);
-        unitService.setUnitOnMap(unit, "ap");
-        unitService.save(unit);
-        return "done";
-    }
+
 
 }
