@@ -1,10 +1,4 @@
-let mouseDown = 0;
-let mouseOnClickPosX = 0;
-let mouseOnClickPosY = 0;
-let elementOnClickPosX = 0;
-let elementOnClickPosY = 0;
-let clickedElement;
-let focusOn = 0;
+
 
 
 function setUpMouseMovementEvents() {

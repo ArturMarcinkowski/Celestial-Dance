@@ -1,9 +1,4 @@
-let generateOrbit = false;
-let generateOrbit2 = false;
-let timer = 0;
-let scale = 0;
-let pause = true
-let bodyPrimaryBodyId = 0;
+
 
 function setUpEventListeners() {
 
