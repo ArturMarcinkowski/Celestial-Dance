@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../resources/css/styles.css">
+
+    <title>StarMap</title>
+</head>
+<body>
+
+<div class="interface">
+    <div class="whole-window-screen">
+        <div class="scroll-box-frame primary-bodies-frame" style="border:1px solid black; background-color: #05054f; color:lightgray; position: center;">
+            <input type="search" class="scroll-box-search" placeholder="search:" size="18px"style="background-color: #0b0b1a">
+            <div class="scroll-box" id="primary-bodies-box">
+                <ul></ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="pause-button" class="btn"></div>
+
+    <div class="all-windows">
+        <div class="window">
+            <div class="window-top">
+                <h2 class="window-top-text"></h2>
+                <div class="window-top-divider">
+
+                <button class="tooltip window-button window-d-btn">
+                    <p class="eye"> &#9851;</p>
+                    <span class="tooltiptext">Delete body</span>
+                </button>
+
+                <button class="tooltip window-button window-o-btn">
+                    <p class="eye">👁</p>
+                    <span class="tooltiptext">Focus at body</span>
+                </button>
+
+                <button class="tooltip window-button window-x-btn ">
+                    <p class="window-x-btn-text">&nbsp;&#10006;</p>
+                    <span class="tooltiptext">Close window</span>
+                </button>
+
+                <button class="tooltip window-button window-enable-btn">
+                   <b> ☈</b>
+                    <span class="tooltiptext">Simulate body</span>
+                </button>
+
+                <button class="tooltip window-button window-set-place-btn">
+                    <b> ☉</b>
+                    <span class="tooltiptext">Set on map</span>
+                </button>
+
+                <button class="tooltip window-button window-primary-body-btn">
+                    <b> ☀</b>
+                    <span class="tooltiptext">Set primary body</span>
+                </button>
+
+
+            </div>
+            <div class="window-inner-text"></div>
+        </div>
+    </div>
+
+    <div class="scroll-box-frame" style="border:1px solid grey; background-color: #cccccc">
+        <input type="search" class="scroll-box-search" placeholder="search:" size="18px">
+        <div class="scroll-box" id="bodies-from-api-box">
+            <ul></ul>
+        </div>
+    </div>
+    <div class="scroll-box-frame" style="border:1px solid grey; background-color: #cccccc">
+        <input type="search" class="scroll-box-search" placeholder="search:" size="18px">
+        <div class="scroll-box" id="bodies-in-my-database-box">
+            <ul></ul>
+        </div>
+    </div>
+
+</div>
+
+
+<div class="celestial-map" id="celestial-map">
+
+</div>
+
+<script type="text/JavaScript" src="app.js"></script>
+<script type="text/JavaScript" src="movementViaMouse.js"></script>
+<script type="text/javascript" src="eventHolder.js"></script>
+<script type="text/JavaScript" src="dataReader.js"></script>
+<script type="text/JavaScript" src="generateStuff.js"></script>
+<script type="text/JavaScript" src="deleteStuff.js"></script>
+<script type="text/JavaScript" src="focus.js"></script>
+</body>
+</html>
