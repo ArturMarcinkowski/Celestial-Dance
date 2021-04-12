@@ -41,7 +41,7 @@ function addBodyToDatabase(name) {
     let id = 0;
     apiBodyList.forEach(async function (el) {
         if (el[0] === name) {
-            id = await sendRequest("http://localhost:8080/generate-data-from-api?name=" + el[1]);
+            id = await sendRequest("http://"+myIP+":8080/generate-data-from-api?name=" + el[1]);
 
             displayBodyFromDatabase(name).then(function () {
                 document.getElementById(String("window-" + id)).style.visibility = "visible"; /////////not working?????
@@ -67,7 +67,7 @@ function setMyListClick(li) {
 function setPrimaryBodyListClick(li) {
     li.addEventListener("click", function () {
         wholeScreenDiv.style.visibility="hidden";
-        sendRequest("http://localhost:8080/set-primary-body?bodyId=" + bodyPrimaryBodyId +"&primaryBodyId=" + li.id.substring(17));
+        sendRequest("http://"+myIP+":8080/set-primary-body?bodyId=" + bodyPrimaryBodyId +"&primaryBodyId=" + li.id.substring(17));
         bodyPrimaryBodyId = 0;
     })
 }
@@ -87,7 +87,7 @@ function setBodyCenterClick(bodyCenter) {
 
 function setWindowDeleteButton(myWindow) {
     myWindow.querySelector(".window-d-btn").addEventListener("click", function () {
-        sendRequest("http://localhost:8080/delete-by-id?id=" + myWindow.id.substring(7))
+        sendRequest("http://"+myIP+":8080/delete-by-id?id=" + myWindow.id.substring(7))
         moveLiFromMyListToApi(myWindow.id.substring(7));
         removeCelestialObject(myWindow.id.substring(7));
     })
@@ -120,11 +120,11 @@ function setWindowEnableButton(myWindow, isEnabled) {
 
     myButton.addEventListener("click", function () {
         if (myButton.classList.contains("window-enable-btn-off")) {
-            sendRequest("http://localhost:8080/enable?id=" + myWindow.id.substring(7));
+            sendRequest("http://"+myIP+":8080/enable?id=" + myWindow.id.substring(7));
             myButton.classList.add("window-enable-btn-on");
             myButton.classList.remove("window-enable-btn-off");
         } else if (myButton.classList.contains("window-enable-btn-on")) {
-            sendRequest("http://localhost:8080/disable?id=" + myWindow.id.substring(7));
+            sendRequest("http://"+myIP+":8080/disable?id=" + myWindow.id.substring(7));
             myButton.classList.add("window-enable-btn-off");
             myButton.classList.remove("window-enable-btn-on");
         }
@@ -133,7 +133,7 @@ function setWindowEnableButton(myWindow, isEnabled) {
 
 function setWindowSetOnMapButton(myWindow){
     myWindow.querySelector(".window-set-place-btn").addEventListener("click", function (){
-        sendRequest("http://localhost:8080/set-body-on-map?id=" + myWindow.id.substring(7));
+        sendRequest("http://"+myIP+":8080/set-body-on-map?id=" + myWindow.id.substring(7));
     })
 }
 

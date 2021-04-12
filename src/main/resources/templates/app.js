@@ -7,14 +7,14 @@ const primaryBodyBox = document.querySelector("#primary-bodies-box");
 const primaryBodyScreen = document.querySelector(".whole-window-screen")
 const myWindows = document.querySelector(".all-windows");
 const wholeScreenDiv = document.querySelector(".whole-window-screen");
-
+const myIP = "3.66.21.51";
 let apiBodyList = new Array();
 let celestialBodies;
 let bodyCenters;
 
 
 document.addEventListener('DOMContentLoaded', async () => {
-    let startUpData = await returnData("http://localhost:8080/getall/");
+    let startUpData = await returnData("http://"+myIP+":8080/getall/");
     displayStartUpData(startUpData);
 
     celestialBodies = document.querySelectorAll(".celestialBody");
@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 setInterval(async () => {
     if (!pause) {
-        let bodiesData = await returnData("http://localhost:8080/make-move/");
+        let bodiesData = await returnData("http://"+myIP+":8080/make-move/");
         displayPlanets(bodiesData);
 
     }

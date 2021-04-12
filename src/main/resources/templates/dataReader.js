@@ -1,3 +1,5 @@
+
+
 async function returnData(url) {
     async function load(Url) {
         const request = await fetch(Url);
@@ -45,7 +47,7 @@ function displayStartUpData(data) {
 }
 
 async function displayBodyFromDatabase(name) {
-    let bodyData = await returnData("http://localhost:8080/get-one?name=" + name);
+    let bodyData = await returnData("http://"+myIP+":8080/get-one?name=" + name);
     generateCelestialObject(bodyData);
 }
 
@@ -80,6 +82,10 @@ function generateWindowInnerText(data) {
         "    <b>mass:</b>   " + data.massValue + "e" + data.massExponent + "<br/>" +
         "    <b>radius:</b> " + data.radius + "<br/>" +
         "    <b>color:</b>  " + data.color + "<br/>" +
-        "    <b>velocity:</b>   " + parseFloat(Math.sqrt(data.velX * data.velX + data.velY * data.velY)).toFixed(6) + "<br/>";
+        "    <b>velocity:</b>   " + parseFloat(Math.sqrt(data.velX * data.velX + data.velY * data.velY)).toFixed(6) + "<br/>" +
+        "    <b>posX:</b>  " + data.posX + "<br/>" +
+        "    <b>posY:</b>  " + data.posY + "<br/>";
+
+
 }
 
