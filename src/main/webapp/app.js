@@ -15,14 +15,15 @@ document.addEventListener('DOMContentLoaded', async () => {
     setUpEventListeners();
 
 
+    setInterval(async () => {
+        if (!pause) {
+            let bodiesData = await returnData("http://"+myIP+":8080/make-move/");
+            displayPlanets(bodiesData);
+
+        }
+    }, 50);
 })
 
 
-setInterval(async () => {
-    if (!pause) {
-        let bodiesData = await returnData("http://"+myIP+":8080/make-move/");
-        displayPlanets(bodiesData);
 
-    }
-}, 50);
 
