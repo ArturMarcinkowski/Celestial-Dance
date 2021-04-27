@@ -191,8 +191,30 @@ body {
     overflow: auto;
 }
 
+.all-bodies-frame {
+    border: 1px solid grey;
+    background-color: #cccccc;
+    right: 1px;
+    position: fixed;
+}
+
+
+
 ul {
     list-style: none;
+    text-align: left;
+    display:inline;
+    margin-top : 0;
+
+    display: block;
+    /*list-style-type: disc;*/
+    margin-before: 1em;
+    margin-after: 1em;
+    margin-start: 0;
+    margin-end: 0;
+    padding-start: 40px;
+
+
 }
 
 
@@ -246,7 +268,7 @@ ul {
     margin-left: -100px;
 }
 
-.back-button{
+.back-button {
     background-color: blue;
     text-align: center;
     text-decoration: none;

@@ -1,11 +1,7 @@
 package stars.CelestialDance.controller;
 
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
-import stars.CelestialDance.utils.apiConverter.BodiesDataConverter;
-import stars.CelestialDance.utils.apiConverter.BodyDataConverter;
 import stars.CelestialDance.model.Body;
-import stars.CelestialDance.model.CelestialUnit;
 import stars.CelestialDance.model.OrbitDisplay;
 import stars.CelestialDance.service.BodyService;
 import stars.CelestialDance.service.CelestialUnitService;

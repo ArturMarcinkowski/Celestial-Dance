@@ -12,7 +12,7 @@ function setUpEventListeners() {
         if (event.key === "b") {
             generateOrbit2 = !generateOrbit2;
         }
-        filterSearchLists();
+        // filterSearchLists();
     })
 
     pauseButton.addEventListener("click", function () {

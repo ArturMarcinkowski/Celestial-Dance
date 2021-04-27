@@ -1,8 +1,5 @@
-
-
-
 document.addEventListener('DOMContentLoaded', async () => {
-    let startUpData = await returnData("http://"+myIP+":8080/getall/");
+    let startUpData = await returnData("http://" + myIP + ":8080/getall/");
     displayStartUpData(startUpData);
 
     celestialBodies = document.querySelectorAll(".celestialBody");
@@ -14,16 +11,16 @@ document.addEventListener('DOMContentLoaded', async () => {
     setUpMouseMovementEvents();
     setUpEventListeners();
 
-
+    let isIntervalInProgress = false;
     setInterval(async () => {
-        if (!pause) {
-            let bodiesData = await returnData("http://"+myIP+":8080/make-move/");
+        if (!pause && isIntervalInProgress === false) {
+            isIntervalInProgress = true;
+            let bodiesData = await returnData("http://" + myIP + ":8080/make-move/");
             displayPlanets(bodiesData);
-
+            isIntervalInProgress = false;
         }
-    }, 50);
+    }, 1);
 })
-
 
 
 

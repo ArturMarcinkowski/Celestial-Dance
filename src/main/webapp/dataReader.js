@@ -77,15 +77,5 @@ function displayBodiesListFromApi(data) {
 }
 
 
-function generateWindowInnerText(data) {
-    return "    <b>name:</b>   " + data.name + "<br/>" +
-        "    <b>mass:</b>   " + data.massValue + "e" + data.massExponent + "<br/>" +
-        "    <b>radius:</b> " + data.radius + "<br/>" +
-        "    <b>color:</b>  " + data.color + "<br/>" +
-        "    <b>velocity:</b>   " + parseFloat(Math.sqrt(data.velX * data.velX + data.velY * data.velY)).toFixed(6) + "<br/>" +
-        "    <b>posX:</b>  " + data.posX + "<br/>" +
-        "    <b>posY:</b>  " + data.posY + "<br/>";
 
-
-}
 

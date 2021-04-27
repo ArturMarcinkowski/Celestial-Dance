@@ -17,6 +17,9 @@ function generateBody(data){
     newBody.style.top = data.posY + "px";
     newBody.style.left = data.posX + "px";
     newBody.style.backgroundColor = data.color
+    if(data.color == null){
+        newBody.style.backgroundColor = Math.floor(Math.random()*16777215).toString(16);
+    }
     newBody.style.width = data.radius + "px";
     newBody.style.height = data.radius + "px";
     newBody.className = "celestialBody";
@@ -42,6 +45,15 @@ function generateWindow(data){
     myInterface.appendChild(newWindow);
 }
 
+function generateWindowInnerText(data) {
+    return "    <b>name:</b>   " + data.name + "<br/>" +
+        "    <b>mass:</b>   " + data.massValue + "e" + data.massExponent + "<br/>" +
+        "    <b>radius:</b> " + data.radius + "<br/>" +
+        "    <b>color:</b>  " + data.color + "<br/>" +
+        "    <b>velocity:</b>   " + parseFloat(Math.sqrt(data.velX * data.velX + data.velY * data.velY)).toFixed(6) + "<br/>" +
+        "    <b>posX:</b>  " + data.posX + "<br/>" +
+        "    <b>posY:</b>  " + data.posY + "<br/>";
+}
 
 function generateMyListElement(data){
     let newListElement = document.createElement("li");
