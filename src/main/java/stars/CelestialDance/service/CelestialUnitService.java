@@ -121,16 +121,18 @@ public class CelestialUnitService {
     }
 
     public void saveNewUnit(CelestialUnit unit) {
-        int id = bodyService.saveNewBody(unit.getBody());
+        if(!bodyService.findByName(unit.getBody().getName()).isPresent()){
+            int id = bodyService.saveNewBody(unit.getBody());
 
-        if (unit.getOrbitDisplay() != null) {
-            unit.getOrbitDisplay().setId(id);
-            displayService.save(unit.getOrbitDisplay());
-        }
+            if (unit.getOrbitDisplay() != null) {
+                unit.getOrbitDisplay().setId(id);
+                displayService.save(unit.getOrbitDisplay());
+            }
 
-        if (unit.getOrbitRadius() != null) {
-            unit.getOrbitRadius().setId(id);
-            radiusService.save(unit.getOrbitRadius());
+            if (unit.getOrbitRadius() != null) {
+                unit.getOrbitRadius().setId(id);
+                radiusService.save(unit.getOrbitRadius());
+            }
         }
     }
 
