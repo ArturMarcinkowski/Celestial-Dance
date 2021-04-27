@@ -4,7 +4,7 @@ import org.springframework.web.bind.annotation.*;
 import stars.CelestialDance.model.Body;
 import stars.CelestialDance.service.BodyService;
 import stars.CelestialDance.service.CelestialUnitService;
-import stars.CelestialDance.service.OrbitDisplayService;
+
 import java.util.List;
 
 
@@ -12,12 +12,10 @@ import java.util.List;
 public class HomeController {
 
     private final BodyService bodyService;
-    private final OrbitDisplayService orbitDisplayService;
     private final CelestialUnitService unitService;
 
-    public HomeController(BodyService bodyService, OrbitDisplayService orbitDisplayService, CelestialUnitService unitService) {
+    public HomeController(BodyService bodyService, CelestialUnitService unitService) {
         this.bodyService = bodyService;
-        this.orbitDisplayService = orbitDisplayService;
         this.unitService = unitService;
     }
 

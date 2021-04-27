@@ -6,9 +6,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import stars.CelestialDance.model.CelestialUnit;
-import stars.CelestialDance.service.BodyService;
 import stars.CelestialDance.service.CelestialUnitService;
-import stars.CelestialDance.service.OrbitDisplayService;
 import stars.CelestialDance.utils.apiConverter.BodiesDataConverter;
 import stars.CelestialDance.utils.apiConverter.BodyDataConverter;
 

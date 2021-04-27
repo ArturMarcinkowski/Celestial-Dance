@@ -15,18 +15,14 @@ public class CelestialUnitService {
 
     private final BodyService bodyService;
     private final OrbitRadiusService radiusService;
-    private final OrbitDisplayService displayService;
 
-    public CelestialUnitService(BodyService bodyService, OrbitRadiusService radiusService, OrbitDisplayService displayService) {
+    public CelestialUnitService(BodyService bodyService, OrbitRadiusService radiusService) {
         this.bodyService = bodyService;
         this.radiusService = radiusService;
-        this.displayService = displayService;
     }
 
     public void deleteById(int id) {
-        if (displayService.findById(id).isPresent()) {
-            displayService.deleteById(id);
-        }
+
         if (radiusService.findById(id).isPresent()) {
             radiusService.deleteById(id);
         }
@@ -118,11 +114,6 @@ public class CelestialUnitService {
         if (bodyService.findByName(unit.getBody().getName()).isEmpty()) {
             int id = bodyService.saveNewBody(unit.getBody());
 
-            if (unit.getOrbitDisplay() != null) {
-                unit.getOrbitDisplay().setId(id);
-                displayService.save(unit.getOrbitDisplay());
-            }
-
             if (unit.getOrbitRadius() != null) {
                 unit.getOrbitRadius().setId(id);
                 radiusService.save(unit.getOrbitRadius());
@@ -181,19 +172,13 @@ public class CelestialUnitService {
         if (radiusService.findById(id).isPresent()) {
             unit.setOrbitRadius(radiusService.findById(id).get());
         }
-        if (displayService.findById(id).isPresent()) {
-            unit.setOrbitDisplay(displayService.findById(id).get());
-        }
+
         return unit;
     }
 
     public void save(CelestialUnit unit) {
         bodyService.save(unit.getBody());
         int id = unit.getBody().getId();
-        if (unit.getOrbitDisplay() != null) {
-            unit.getOrbitDisplay().setId(id);
-            displayService.save(unit.getOrbitDisplay());
-        }
 
         if (unit.getOrbitRadius() != null) {
             unit.getOrbitRadius().setId(id);
