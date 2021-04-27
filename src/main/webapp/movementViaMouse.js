@@ -53,7 +53,7 @@ function setUpMouseMovementEvents() {
 
 
             celestialMap.style.transform = "scale(" + parseFloat(Math.pow(1.1, scale)) + ")";
-            bodyCenters.forEach(el => {
+            document.querySelectorAll(".celestialBodyCenter").forEach(el => {
                 el.style.transform = "scale(" + parseFloat(Math.pow(1.1, -scale)) + ")";
             })
             if (focusOn !== 0) {

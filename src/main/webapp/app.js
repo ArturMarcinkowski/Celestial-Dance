@@ -11,16 +11,16 @@ document.addEventListener('DOMContentLoaded', async () => {
     setUpMouseMovementEvents();
     setUpEventListeners();
 
-    let isIntervalInProgress = false;
-    setInterval(async () => {
-        if (!pause && isIntervalInProgress === false) {
-            isIntervalInProgress = true;
-            let bodiesData = await returnData("http://" + myIP + ":8080/make-move/");
-            displayPlanets(bodiesData);
-            isIntervalInProgress = false;
-        }
-    }, 1);
+
 })
 
-
+let isIntervalInProgress = false;
+setInterval(async () => {
+    if (!pause && isIntervalInProgress === false) {
+        isIntervalInProgress = true;
+        let bodiesData = await returnData("http://" + myIP + ":8080/make-move/");
+        displayPlanets(bodiesData);
+        isIntervalInProgress = false;
+    }
+}, 1);
 

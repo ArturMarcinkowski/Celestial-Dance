@@ -6,12 +6,7 @@ function setUpEventListeners() {
         if (event.key === "p") {
             pause = !pause;
         }
-        if (event.key === "a") {
-            generateOrbit = !generateOrbit;
-        }
-        if (event.key === "b") {
-            generateOrbit2 = !generateOrbit2;
-        }
+
         // filterSearchLists();
     })
 
@@ -20,13 +15,9 @@ function setUpEventListeners() {
     })
 
     // document.querySelectorAll(".scroll-box-search").forEach(setSearchTextChange);
-
-    celestialBodies.forEach(setCelestialBodyClick())
-
-
-    bodyCenters.forEach(setBodyCenterClick())
-
-    document.querySelectorAll('.window').forEach(setWindowCloseButton);
+    // celestialBodies.forEach(setCelestialBodyClick())
+    // bodyCenters.forEach(setBodyCenterClick())
+    // document.querySelectorAll('.window').forEach(setWindowCloseButton);
 
 
 }

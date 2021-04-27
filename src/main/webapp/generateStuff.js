@@ -4,9 +4,11 @@ function generateBodyCenter(data){
     newCenter.className = "celestialBodyCenter";
     newCenter.style.top = data.posY + "px";
     newCenter.style.left = data.posX + "px";
+    newCenter.style.backgroundColor = data.color
 
     setBodyCenterClick(newCenter);
     celestialMap.appendChild(newCenter);
+    newCenter.style.transform = "scale(" + parseFloat(Math.pow(1.1, -scale)) + ")";
 }
 
 
@@ -17,11 +19,12 @@ function generateBody(data){
     newBody.style.top = data.posY + "px";
     newBody.style.left = data.posX + "px";
     newBody.style.backgroundColor = data.color
-    if(data.color == null){
-        newBody.style.backgroundColor = Math.floor(Math.random()*16777215).toString(16);
-    }
+    // if(data.color == null){
+    //     newBody.style.backgroundColor =
+    // }
     newBody.style.width = data.radius + "px";
     newBody.style.height = data.radius + "px";
+    newBody.style.border = toString(data.radius / 200) + "px solid black";
     newBody.className = "celestialBody";
 
     setCelestialBodyClick(newBody);
@@ -50,6 +53,7 @@ function generateWindowInnerText(data) {
         "    <b>mass:</b>   " + data.massValue + "e" + data.massExponent + "<br/>" +
         "    <b>radius:</b> " + data.radius + "<br/>" +
         "    <b>color:</b>  " + data.color + "<br/>" +
+        "    <b>primaryBodyId:</b>  " + data.primaryBodyId + "<br/>" +
         "    <b>velocity:</b>   " + parseFloat(Math.sqrt(data.velX * data.velX + data.velY * data.velY)).toFixed(6) + "<br/>" +
         "    <b>posX:</b>  " + data.posX + "<br/>" +
         "    <b>posY:</b>  " + data.posY + "<br/>";

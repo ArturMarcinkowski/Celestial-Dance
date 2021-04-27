@@ -31,13 +31,7 @@ function displayPlanets(data) {
             focusOnElement(body);
         }
 
-        if (generateOrbit2) {
-            let bodyCenter = document.createElement("div");
-            bodyCenter.className = "celestialBodyCenter";
-            bodyCenter.style.top = el.posY + "px";
-            bodyCenter.style.left = el.posX + "px";
-            celestialMap.appendChild(bodyCenter);
-        }
+
     })
 }
 
@@ -52,6 +46,9 @@ async function displayBodyFromDatabase(name) {
 }
 
 function generateCelestialObject(data) {
+    if (data.color == null){
+        data.color = "#" + Math.floor(Math.random()*16777215).toString(16);
+    }
     generateBodyCenter(data);
     generateBody(data);
     generateWindow(data);

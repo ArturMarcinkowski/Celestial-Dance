@@ -28,8 +28,8 @@ body {
 
 .celestialBodyCenter {
     background-color: black;
-    width: 10px; /* You can define it by % also */
-    height: 10px; /* You can define it by % also */
+    width: 15px; /* You can define it by % also */
+    height: 15px; /* You can define it by % also */
     position: absolute;
     border: 1px solid black;
     border-radius: 50%;

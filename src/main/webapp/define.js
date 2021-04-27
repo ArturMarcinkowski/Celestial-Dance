@@ -22,9 +22,6 @@ let elementOnClickPosY = 0;
 let clickedElement;
 let focusOn = 0;
 
-
-let generateOrbit = false;
-let generateOrbit2 = false;
 let scale = 0;
 let pause = true
 let bodyPrimaryBodyId = 0;
