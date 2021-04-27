@@ -38,6 +38,15 @@ public class HomeController {
         return "done";
     }
 
+    @CrossOrigin
+    @RequestMapping("/delete-all")
+    public String deleteAll(@RequestParam int id) {
+        unitService.deleteAll();
+        return "done";
+    }
+
+
+
 
 
 

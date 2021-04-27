@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import stars.CelestialDance.model.OrbitRadius;
 import stars.CelestialDance.repository.OrbitRadiusRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -15,9 +16,13 @@ public class OrbitRadiusService {
         this.orbitRadiusRepository = orbitRadiusRepository;
     }
 
+    public List<OrbitRadius> findAll(){return orbitRadiusRepository.findAll();}
+
     public void deleteById(int id){
         orbitRadiusRepository.deleteById(id);
     }
+
+    public void delete(OrbitRadius radius){orbitRadiusRepository.delete(radius);}
 
     public Optional<OrbitRadius> findById(int id) {
         return orbitRadiusRepository.findById(id);

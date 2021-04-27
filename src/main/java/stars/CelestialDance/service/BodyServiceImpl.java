@@ -33,6 +33,9 @@ public class BodyServiceImpl implements BodyService {
     }
 
     @Override
+    public void delete(Body body) { bodyRepository.delete(body); }
+
+    @Override
     public void enable(int id) {
         Optional<Body> optionalBody = bodyRepository.findById(id);
         if (optionalBody.isPresent()) {

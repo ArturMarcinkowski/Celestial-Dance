@@ -1,6 +1,7 @@
 package stars.CelestialDance.service;
 
 import org.springframework.stereotype.Service;
+import stars.CelestialDance.model.OrbitRadius;
 import stars.CelestialDance.utils.apiConverter.BodyDataConverter;
 import stars.CelestialDance.model.Body;
 import stars.CelestialDance.model.CelestialUnit;
@@ -22,7 +23,6 @@ public class CelestialUnitService {
     }
 
     public void deleteById(int id) {
-
         if (radiusService.findById(id).isPresent()) {
             radiusService.deleteById(id);
         }
@@ -31,6 +31,16 @@ public class CelestialUnitService {
         }
     }
 
+    public void deleteAll() {
+        List<Body> bodies = bodyService.findAll();
+        for(Body body:bodies){
+            bodyService.delete(body);
+        }
+        List<OrbitRadius> radiusList = radiusService.findAll();
+        for(OrbitRadius radius:radiusList){
+            radiusService.delete(radius);
+        }
+    }
 
     public List<CelestialUnit> processMultipleData(List<BodyDataConverter> multipleData, String filter) {
         if (filter.equals("planets")) {

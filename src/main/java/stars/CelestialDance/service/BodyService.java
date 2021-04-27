@@ -11,6 +11,8 @@ public interface BodyService {
 
     void deleteById(int id);
 
+    void delete(Body body);
+
     void enable(int id);
 
     void disable(int id);
