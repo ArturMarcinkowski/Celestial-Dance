@@ -72,23 +72,38 @@ public class CelestialUnitService {
         return null;
     }
 
-//    public void setAllPrimaryBodies(List<BodyDataConverter> multipleData) {
-//        for (BodyDataConverter data : multipleData) {
-//            if (data.getAroundPlanet() != null) {
-//                Optional<Body> optionalPrimaryBody = bodyService.findByName(data.getAroundPlanet().getPlanet());
-//                if (optionalPrimaryBody.isPresent()) {
-//                    int primaryBodyId = optionalPrimaryBody.get().getId();
-//                    Optional<Body> optionalBody = bodyService.findByName(data.getEnglishName());
-//                    if(optionalBody.isPresent()){
-//                        Body body = optionalBody.get();
-//                        body.setPrimaryBodyId(primaryBodyId);
-//                        bodyService.save(body);
-//                    }
-//                }
-//            }
-//        }
-//
-//    }
+    public void setOnePrimaryBody(List<BodyDataConverter> multipleData, String name) {
+        Optional<Body> optionalBody = bodyService.findByName(name);
+        if (optionalBody.isEmpty()) {
+            return;
+        }
+        Body body = optionalBody.get();
+        for (BodyDataConverter data : multipleData) {
+            if (data.getIsPlanet().equals("true") && data.getEnglishName().equals(name)) {
+                Optional<Body> optionalSun = bodyService.findByName("Sun");
+                if(optionalSun.isPresent()){
+                    body.setPrimaryBodyId(optionalSun.get().getId());
+                    bodyService.save(body);
+                }
+                return;
+            }
+
+            if (data.getMoons() != null) {
+                List<String> moonNames = data.getMoonNames();
+                for (String moonName : moonNames) {
+                    if (moonName.equals(name)) {
+                        Optional<Body> optionalPrimaryBody = bodyService.findByName(data.getEnglishName());
+                        if(optionalPrimaryBody.isPresent()){
+                            body.setPrimaryBodyId(optionalPrimaryBody.get().getId());
+                            bodyService.save(body);
+                            return;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
 
     public void setAllPrimaryBodies(List<BodyDataConverter> multipleData) {
         int sunId = bodyService.findByName("Sun").get().getId();
@@ -121,7 +136,7 @@ public class CelestialUnitService {
     }
 
     public void saveNewUnit(CelestialUnit unit) {
-        if(!bodyService.findByName(unit.getBody().getName()).isPresent()){
+        if (bodyService.findByName(unit.getBody().getName()).isEmpty()) {
             int id = bodyService.saveNewBody(unit.getBody());
 
             if (unit.getOrbitDisplay() != null) {

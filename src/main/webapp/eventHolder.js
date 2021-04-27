@@ -19,7 +19,15 @@ function setUpEventListeners() {
     // bodyCenters.forEach(setBodyCenterClick())
     // document.querySelectorAll('.window').forEach(setWindowCloseButton);
 
+    document.querySelector(".li-all-planets").addEventListener("click", function (){
+        sendRequest("http://"+myIP+":8080/generate-data-from-api?demand=planets");
+        alert("Multiple object loaded. Please reload the website");
+    })
 
+    document.querySelector(".li-all-bodies").addEventListener("click", function (){
+        sendRequest("http://"+myIP+":8080/generate-data-from-api?demand=all");
+        alert("Multiple object loaded. Please reload the website");
+    })
 
 }
 

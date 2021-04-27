@@ -47,6 +47,17 @@ public class SetterController {
     }
 
     @CrossOrigin
+    @RequestMapping("/set-primary-body-from-api")
+    public String setAll(@RequestParam String name) {
+        String url = "https://api.le-systeme-solaire.net/rest/bodies";
+        RestTemplate restTemplate = new RestTemplate();
+        BodiesDataConverter multipleData = restTemplate.getForObject(url, BodiesDataConverter.class);
+        List<BodyDataConverter> data = multipleData.getBodies();
+        unitService.setOnePrimaryBody(data, name);
+        return "done";
+    }
+
+    @CrossOrigin
     @RequestMapping("/set-body-on-map")
     public String setBody(@RequestParam int id) {
         CelestialUnit unit = unitService.findById(id);
