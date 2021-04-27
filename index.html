@@ -11,84 +11,68 @@
 <div class="interface">
     <div class="whole-window-screen">
         <div class="scroll-box-frame primary-bodies-frame">
-<!--            <input type="search" class="scroll-box-search" placeholder="search:" size="18px"-->
-<!--                   style="background-color: #0b0b1a">-->
+            <!--            <input type="search" class="scroll-box-search" placeholder="search:" size="18px"-->
+            <!--                   style="background-color: #0b0b1a">-->
             <div class="scroll-box" id="primary-bodies-box">
                 <ul></ul>
             </div>
-           <button class="back-button" >BACK</button>
+            <button class="back-button">BACK</button>
         </div>
     </div>
 
-    <div id="pause-button" class="btn"></div>
+    <div id="pause-button" class="btn"><b>PLAY</b></div>
 
     <div class="all-windows">
         <div class="window">
             <div class="window-top">
                 <h2 class="window-top-text"></h2>
                 <div class="window-top-divider">
-
                     <button class="tooltip window-button window-d-btn">
-                        <p class="eye"> &#9851;</p>
-                        <span class="tooltiptext">Delete body</span>
+                        <p class="eye"> &#9851;</p><span class="tooltiptext">Delete body</span>
                     </button>
-
                     <button class="tooltip window-button window-o-btn">
-                        <p class="eye">👁</p>
-                        <span class="tooltiptext">Focus at body</span>
+                        <p class="eye">👁</p><span class="tooltiptext">Focus at body</span>
                     </button>
-
                     <button class="tooltip window-button window-x-btn ">
-                        <p class="window-x-btn-text">&nbsp;&#10006;</p>
-                        <span class="tooltiptext">Close window</span>
+                        <p class="window-x-btn-text">&nbsp;&#10006;</p><span class="tooltiptext">Close window</span>
                     </button>
-
                     <button class="tooltip window-button window-enable-btn">
-                        <b> ☈</b>
-                        <span class="tooltiptext">Simulate body</span>
+                        <b> ☈</b><span class="tooltiptext">Simulate body</span>
                     </button>
-
                     <button class="tooltip window-button window-set-place-btn">
-                        <b> ☉</b>
-                        <span class="tooltiptext">Set on map</span>
+                        <b> ☉</b><span class="tooltiptext">Set on map</span>
                     </button>
-
                     <button class="tooltip window-button window-primary-body-btn">
-                        <b> ☀</b>
-                        <span class="tooltiptext">Set primary body</span>
+                        <b> ☀</b><span class="tooltiptext">Set primary body</span>
                     </button>
-
-
                 </div>
                 <div class="window-inner-text"></div>
             </div>
         </div>
     </div>
 
-
-
-    <div class="scroll-box-frame all-bodies-frame" >
-<!--        <input type="search" class="scroll-box-search" placeholder="search:" size="18px">-->
-        <div style="text-align: center; background-color: #919191">Download from<br>Solar System API:</div>
+    <div class="scroll-box-frame all-bodies-frame">
+        <!--        <input type="search" class="scroll-box-search" placeholder="search:" size="18px">-->
+        <div style="text-align: center; background-color: #919191">To download from<br>Solar System API:</div>
         <div class="scroll-box" id="bodies-from-api-box">
-            <ul></ul>
+            <ul>
+                <li class="li-all-bodies" style="color: red">All Bodies</li>
+                <li class="li-all-planets" style="color: green;">All Planets</li>
+            </ul>
         </div>
     </div>
-    <div class="scroll-box-frame all-bodies-frame" style="top: 368px" >
-<!--        <input type="search" class="scroll-box-search" placeholder="search:" size="18px">-->
-        <div style="text-align: center; background-color: #919191">Downloaded Objects:</div>
+    <div class="scroll-box-frame all-bodies-frame" style="top: 368px">
+        <!--        <input type="search" class="scroll-box-search" placeholder="search:" size="18px">-->
+        <div style="text-align: center; background-color: #919191">Present body list:</div>
         <div class="scroll-box" id="bodies-in-my-database-box">
             <ul></ul>
         </div>
     </div>
 
-
 </div>
 
 
-<div class="celestial-map" id="celestial-map">
-
-</div>
+<div class="celestial-map" id="celestial-map"></div>
 
 <script type="text/JavaScript" src="src/main/webapp/app.js"></script>
 <script type="text/JavaScript" src="src/main/webapp/movementViaMouse.js"></script>

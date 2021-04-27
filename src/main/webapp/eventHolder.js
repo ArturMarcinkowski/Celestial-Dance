@@ -20,6 +20,7 @@ function setUpEventListeners() {
     // document.querySelectorAll('.window').forEach(setWindowCloseButton);
 
 
+
 }
 
 
@@ -30,7 +31,7 @@ function addBodyToDatabase(name) {
             id = await sendRequest("http://"+myIP+":8080/generate-data-from-api?name=" + el[1]);
 
             displayBodyFromDatabase(name).then(function () {
-                document.getElementById(String("window-" + id)).style.visibility = "visible"; /////////not working?????
+                document.getElementById(String("window-" + id)).style.visibility = "visible";
             });
 
         }
@@ -58,6 +59,11 @@ function setPrimaryBodyListClick(li) {
     })
 }
 
+function setApiListClick(listElement) {
+    listElement.addEventListener("click", function () {
+        addBodyToDatabase(listElement.innerText);
+    });
+}
 
 function setCelestialBodyClick(body) {
     body.addEventListener("click", function () {
@@ -131,11 +137,6 @@ function setWindowPrimaryBodyButton(myWindow) {
     })
 }
 
-function setApiListClick(listElement) {
-    listElement.addEventListener("click", function () {
-        addBodyToDatabase(listElement.innerText);
-    });
-}
 
 // function setSearchTextChange(input) {
 //     input.addEventListener("change", function () {

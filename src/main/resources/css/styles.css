@@ -50,7 +50,10 @@ body {
 
 #pause-button {
     background-color: darkred;
-    width: 40px; /* You can define it by % also */
+    color: gold;
+    font-size: 32px;
+    text-align: center;
+    width: 100px;
     height: 40px;
     right: 200px;
     position: fixed;
@@ -65,7 +68,7 @@ body {
 .window {
     background-color: indigo;
     visibility: hidden;
-    width: 200px; /* You can define it by % also */
+    width: 200px;
     height: 250px;
     left: 400px;
     top: 300px;

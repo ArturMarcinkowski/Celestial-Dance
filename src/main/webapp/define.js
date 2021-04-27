@@ -22,6 +22,6 @@ let elementOnClickPosY = 0;
 let clickedElement;
 let focusOn = 0;
 
-let scale = 0;
+let scale = -80;
 let pause = true
 let bodyPrimaryBodyId = 0;

@@ -51,14 +51,17 @@ function setUpMouseMovementEvents() {
                 celestialMap.style.left = 1.1 * (celestialMap.offsetLeft + -w) + w + "px";
             }
 
-
-            celestialMap.style.transform = "scale(" + parseFloat(Math.pow(1.1, scale)) + ")";
-            document.querySelectorAll(".celestialBodyCenter").forEach(el => {
-                el.style.transform = "scale(" + parseFloat(Math.pow(1.1, -scale)) + ")";
-            })
+            scaleMap();
             if (focusOn !== 0) {
                 focusOnElement(document.getElementById(focusOn));
             }
         }
+    })
+}
+
+function scaleMap(){
+    celestialMap.style.transform = "scale(" + parseFloat(Math.pow(1.1, scale)) + ")";
+    document.querySelectorAll(".celestialBodyCenter").forEach(el => {
+        el.style.transform = "scale(" + parseFloat(Math.pow(1.1, -scale)) + ")";
     })
 }

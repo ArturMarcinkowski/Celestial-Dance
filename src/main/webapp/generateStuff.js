@@ -29,6 +29,7 @@ function generateBody(data){
 
     setCelestialBodyClick(newBody);
     celestialMap.appendChild(newBody);
+    focusOnElement(newBody);
 }
 
 
@@ -82,7 +83,8 @@ function generateApiListElement(name){
     newListElement.innerText = name;
 
     setApiListClick(newListElement);
-    apiBodyBox.querySelector("ul").prepend(newListElement);
+    let ul = apiBodyBox.querySelector("ul");
+    ul.insertBefore(newListElement, ul.children[2]);
 }
 
 
