@@ -11,10 +11,6 @@ import javax.persistence.Id;
 @Entity
 public class Body {
 
-//    public Body(int id, String name) {
-//        this.id = id;
-//        this.name = name;
-//    }
     public Body() {
     }
 

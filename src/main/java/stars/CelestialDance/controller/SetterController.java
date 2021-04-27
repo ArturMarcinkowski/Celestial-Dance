@@ -8,7 +8,6 @@ import org.springframework.web.client.RestTemplate;
 import stars.CelestialDance.model.CelestialUnit;
 import stars.CelestialDance.service.BodyService;
 import stars.CelestialDance.service.CelestialUnitService;
-import stars.CelestialDance.service.OrbitDisplayService;
 import stars.CelestialDance.utils.apiConverter.BodiesDataConverter;
 import stars.CelestialDance.utils.apiConverter.BodyDataConverter;
 
@@ -19,12 +18,10 @@ public class SetterController {
 
 
     private final BodyService bodyService;
-    private final OrbitDisplayService orbitDisplayService;
     private final CelestialUnitService unitService;
 
-    public SetterController(BodyService bodyService, OrbitDisplayService orbitDisplayService, CelestialUnitService unitService) {
+    public SetterController(BodyService bodyService, CelestialUnitService unitService) {
         this.bodyService = bodyService;
-        this.orbitDisplayService = orbitDisplayService;
         this.unitService = unitService;
     }
 

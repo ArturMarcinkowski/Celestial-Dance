@@ -16,7 +16,6 @@ public class CelestialUnitService {
     private final BodyService bodyService;
     private final OrbitRadiusService radiusService;
     private final OrbitDisplayService displayService;
-    private final double G = Utils.getGravitationalConstant();
 
     public CelestialUnitService(BodyService bodyService, OrbitRadiusService radiusService, OrbitDisplayService displayService) {
         this.bodyService = bodyService;
@@ -36,26 +35,6 @@ public class CelestialUnitService {
         }
     }
 
-//    public CelestialUnit processData(BodyDataConverter data) {
-//        CelestialUnit unit = new CelestialUnit();
-//        Body body = new Body();
-//        OrbitRadius radius = new OrbitRadius();
-//
-//        body.setName(data.getEnglishName());
-//        body.setMassValue(data.getMass().getMassValue());
-//        body.setMassExponent(data.getMass().getMassExponent() - (int) Math.log10(Utils.getDataScale()));
-//        body.setRadius(Math.max(data.getMeanRadius(), Math.max(data.getEquaRadius(), data.getPolarRadius())) / Utils.getDataScale());
-//        body.setEnabled(false);
-//
-//        radius.setEccentricity(data.getEccentricity());
-//        radius.setRMin(data.getAphelion() / Utils.getDataScale());
-//        radius.setRMax(data.getPerihelion() / Utils.getDataScale());
-//
-//        unit.setBody(body);
-//        unit.setOrbitRadius(radius);
-//
-//        return unit;
-//    }
 
     public List<CelestialUnit> processMultipleData(List<BodyDataConverter> multipleData, String filter) {
         if (filter.equals("planets")) {
@@ -81,7 +60,7 @@ public class CelestialUnitService {
         for (BodyDataConverter data : multipleData) {
             if (data.getIsPlanet().equals("true") && data.getEnglishName().equals(name)) {
                 Optional<Body> optionalSun = bodyService.findByName("Sun");
-                if(optionalSun.isPresent()){
+                if (optionalSun.isPresent()) {
                     body.setPrimaryBodyId(optionalSun.get().getId());
                     bodyService.save(body);
                 }
@@ -93,7 +72,7 @@ public class CelestialUnitService {
                 for (String moonName : moonNames) {
                     if (moonName.equals(name)) {
                         Optional<Body> optionalPrimaryBody = bodyService.findByName(data.getEnglishName());
-                        if(optionalPrimaryBody.isPresent()){
+                        if (optionalPrimaryBody.isPresent()) {
                             body.setPrimaryBodyId(optionalPrimaryBody.get().getId());
                             bodyService.save(body);
                             return;

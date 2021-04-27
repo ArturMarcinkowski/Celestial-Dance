@@ -2,7 +2,6 @@ package stars.CelestialDance.utils.apiConverter;
 
 import lombok.Data;
 import org.springframework.web.client.RestTemplate;
-import stars.CelestialDance.model.CelestialUnit;
 
 @Data
 public class MoonConverter {

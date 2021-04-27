@@ -5,9 +5,7 @@ import stars.CelestialDance.model.Body;
 import stars.CelestialDance.service.BodyService;
 import stars.CelestialDance.service.CelestialUnitService;
 import stars.CelestialDance.service.OrbitDisplayService;
-
 import java.util.List;
-import java.util.Optional;
 
 
 @RestController

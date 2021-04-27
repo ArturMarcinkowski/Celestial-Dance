@@ -23,19 +23,19 @@ public class BodyServiceImpl implements BodyService {
     }
 
     @Override
-    public List<Body> findAll(){
+    public List<Body> findAll() {
         return bodyRepository.findAll();
     }
 
     @Override
-    public void deleteById(int id){
+    public void deleteById(int id) {
         bodyRepository.deleteById(id);
     }
 
     @Override
-    public void enable(int id){
+    public void enable(int id) {
         Optional<Body> optionalBody = bodyRepository.findById(id);
-        if(optionalBody.isPresent()){
+        if (optionalBody.isPresent()) {
             Body body = optionalBody.get();
             body.setEnabled(true);
             bodyRepository.save(body);
@@ -43,9 +43,9 @@ public class BodyServiceImpl implements BodyService {
     }
 
     @Override
-    public void disable(int id){
+    public void disable(int id) {
         Optional<Body> optionalBody = bodyRepository.findById(id);
-        if(optionalBody.isPresent()){
+        if (optionalBody.isPresent()) {
             Body body = optionalBody.get();
             body.setEnabled(false);
             bodyRepository.save(body);
@@ -53,15 +53,15 @@ public class BodyServiceImpl implements BodyService {
     }
 
     @Override
-    public boolean isBodyEnabled(int id){
+    public boolean isBodyEnabled(int id) {
         Optional<Body> optionalBody = bodyRepository.findById(id);
         return optionalBody.map(Body::getEnabled).orElse(false);
     }
 
     @Override
-    public void setPrimaryBody(int bodyId, int primaryBodyId){
+    public void setPrimaryBody(int bodyId, int primaryBodyId) {
         Optional<Body> optionalBody = bodyRepository.findById(bodyId);
-        if(optionalBody.isPresent()){
+        if (optionalBody.isPresent()) {
             Body body = optionalBody.get();
             body.setPrimaryBodyId(primaryBodyId);
             bodyRepository.save(body);
@@ -74,12 +74,12 @@ public class BodyServiceImpl implements BodyService {
     }
 
     @Override
-    public Optional<Body> findByName(String name){
+    public Optional<Body> findByName(String name) {
         return bodyRepository.findByName(name);
     }
 
     @Override
-    public List<Body> getAll(){
+    public List<Body> getAll() {
         return bodyRepository.findAll();
     }
 
@@ -112,12 +112,10 @@ public class BodyServiceImpl implements BodyService {
                 orbitRadiusService.testForRadius(body1.getId(), r);
             }
         }
-
         body1.setVelX((body1.getVelX() - changeX));
         body1.setVelY((body1.getVelY() - changeY));
         body1.setPosX(body1.getPosX() + body1.getVelX());
         body1.setPosY(body1.getPosY() + body1.getVelY());
-
         return body1;
     }
 
