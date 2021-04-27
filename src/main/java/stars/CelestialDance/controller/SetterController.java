@@ -45,12 +45,12 @@ public class SetterController {
 
     @CrossOrigin
     @RequestMapping("/set-primary-body-from-api")
-    public String setAll(@RequestParam String name) {
+    public String setAll(@RequestParam int id) {
         String url = "https://api.le-systeme-solaire.net/rest/bodies";
         RestTemplate restTemplate = new RestTemplate();
         BodiesDataConverter multipleData = restTemplate.getForObject(url, BodiesDataConverter.class);
         List<BodyDataConverter> data = multipleData.getBodies();
-        unitService.setOnePrimaryBody(data, name);
+        unitService.setOnePrimaryBody(data, id);
         return "done";
     }
 

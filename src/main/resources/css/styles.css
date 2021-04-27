@@ -131,6 +131,10 @@ body {
 }
 
 .window-primary-body-btn {
+    right: 155px;
+}
+
+.window-auto-primary-body-btn{
     right: 130px;
 }
 

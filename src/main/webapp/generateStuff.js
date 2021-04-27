@@ -45,6 +45,7 @@ function generateWindow(data){
     setWindowEnableButton(newWindow, data.enabled);
     setWindowSetOnMapButton(newWindow);
     setWindowPrimaryBodyButton(newWindow);
+    setWindowAutoPrimaryBodyButton(newWindow);
 
     myInterface.appendChild(newWindow);
 }

@@ -145,6 +145,12 @@ function setWindowPrimaryBodyButton(myWindow) {
     })
 }
 
+function setWindowAutoPrimaryBodyButton(myWindow) {
+    myWindow.querySelector(".window-auto-primary-body-btn").addEventListener("click", function () {
+        sendRequest("http://"+myIP+":8080/set-primary-body-from-api?id=" + myWindow.id.substring(7));
+    })
+}
+
 
 // function setSearchTextChange(input) {
 //     input.addEventListener("change", function () {

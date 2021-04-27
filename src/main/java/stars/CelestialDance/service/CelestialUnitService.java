@@ -57,7 +57,8 @@ public class CelestialUnitService {
         return null;
     }
 
-    public void setOnePrimaryBody(List<BodyDataConverter> multipleData, String name) {
+    public void setOnePrimaryBody(List<BodyDataConverter> multipleData, int id) {
+        String name = bodyService.findById(id).get().getName();
         Optional<Body> optionalBody = bodyService.findByName(name);
         if (optionalBody.isEmpty()) {
             return;
