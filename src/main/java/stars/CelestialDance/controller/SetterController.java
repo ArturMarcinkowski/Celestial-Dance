@@ -63,6 +63,17 @@ public class SetterController {
         return "done";
     }
 
+//    @CrossOrigin
+//    @RequestMapping("/set-body-on-map")
+//    public String setBody(@RequestParam(required = false, defaultValue = "-1") int id, @RequestParam(required = false) String name) {
+//        CelestialUnit unit;
+//        if(id != -1){ unit = unitService.findById(id); }
+//        else{ unit = unitService.findByName(name); }
+//        unitService.setUnitOnMap(unit, "ap");
+//        unitService.save(unit);
+//        return "done";
+//    }
+
     @CrossOrigin
     @RequestMapping("/enable")
     public String enable(@RequestParam int id) {

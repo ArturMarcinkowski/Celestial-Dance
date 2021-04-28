@@ -14,6 +14,26 @@ function setUpEventListeners() {
         pause = !pause;
     })
 
+    document.querySelector(".reset-button").addEventListener("click", async function () {
+        alert("Multiple data loading. Please wait");
+        await fetch("http://"+myIP+":8080/delete-all");
+        await sendRequest("http://"+myIP+":8080/generate-data-from-api?name=Sun");
+        await sendRequest("http://" + myIP + ":8080/generate-data-from-api?name=Earth")
+        await sendRequest("http://"+myIP+":8080/generate-data-from-api?name=Saturn");
+        await sendRequest("http://"+myIP+":8080/generate-data-from-api?name=Mars");
+        await fetch("http://"+myIP+":8080/set-all-primary-bodies-from-api");
+
+        let data = await returnData("http://" + myIP + ":8080/getall")
+        data.forEach(async function(el){
+            await sendRequest("http://"+myIP+":8080/enable?id=" + el.id);
+            if(el.name !== "Sun"){
+                await sendRequest("http://"+myIP+":8080/set-body-on-map?id=" + el.id);
+            }
+        })
+
+        alert("Loading complete. Please reload the website");
+    })
+
     // document.querySelectorAll(".scroll-box-search").forEach(setSearchTextChange);
     // celestialBodies.forEach(setCelestialBodyClick())
     // bodyCenters.forEach(setBodyCenterClick())
@@ -27,6 +47,11 @@ function setUpEventListeners() {
     document.querySelector(".li-all-bodies").addEventListener("click", function (){
         sendRequest("http://"+myIP+":8080/generate-data-from-api?demand=all");
         alert("Multiple object loaded. Please reload the website");
+    })
+
+    document.querySelector(".back-button").addEventListener("click", function () {
+        wholeScreenDiv.style.visibility = "hidden";
+        bodyPrimaryBodyId = 0;
     })
 
 }
@@ -59,18 +84,18 @@ function setMyListClick(li) {
     })
 }
 
+function setApiListClick(listElement) {
+    listElement.addEventListener("click", function () {
+        addBodyToDatabase(listElement.innerText);
+    });
+}
+
 function setPrimaryBodyListClick(li) {
     li.addEventListener("click", function () {
         wholeScreenDiv.style.visibility="hidden";
         sendRequest("http://"+myIP+":8080/set-primary-body?bodyId=" + bodyPrimaryBodyId +"&primaryBodyId=" + li.id.substring(17));
         bodyPrimaryBodyId = 0;
     })
-}
-
-function setApiListClick(listElement) {
-    listElement.addEventListener("click", function () {
-        addBodyToDatabase(listElement.innerText);
-    });
 }
 
 function setCelestialBodyClick(body) {

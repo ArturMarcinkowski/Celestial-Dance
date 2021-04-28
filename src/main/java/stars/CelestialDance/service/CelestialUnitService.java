@@ -187,6 +187,18 @@ public class CelestialUnitService {
         return unit;
     }
 
+    public CelestialUnit findByName(String name) {
+        CelestialUnit unit = new CelestialUnit();
+        if (bodyService.findByName(name).isPresent()) {
+            unit.setBody(bodyService.findByName(name).get());
+            int id = unit.getBody().getId();
+            if (radiusService.findById(id).isPresent()) {
+                unit.setOrbitRadius(radiusService.findById(id).get());
+            }
+        }
+        return unit;
+    }
+
     public void save(CelestialUnit unit) {
         bodyService.save(unit.getBody());
         int id = unit.getBody().getId();

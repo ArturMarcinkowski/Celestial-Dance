@@ -18,10 +18,7 @@ function generateBody(data){
     newBody.textContent = data.name;
     newBody.style.top = data.posY + "px";
     newBody.style.left = data.posX + "px";
-    newBody.style.backgroundColor = data.color
-    // if(data.color == null){
-    //     newBody.style.backgroundColor =
-    // }
+    newBody.style.backgroundColor = data.color;
     newBody.style.width = data.radius + "px";
     newBody.style.height = data.radius + "px";
     newBody.style.border = toString(data.radius / 200) + "px solid black";

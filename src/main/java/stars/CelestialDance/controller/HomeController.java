@@ -40,12 +40,10 @@ public class HomeController {
 
     @CrossOrigin
     @RequestMapping("/delete-all")
-    public String deleteAll(@RequestParam int id) {
+    public String deleteAll() {
         unitService.deleteAll();
         return "done";
     }
-
-
 
 
 
