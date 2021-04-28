@@ -59,6 +59,17 @@ body {
     position: fixed;
 }
 
+.reset-button{
+    background-color: midnightblue;
+    color: lightgray;
+    font-size: 28px;
+    text-align: center;
+    width: 100px;
+    height: 40px;
+    right: 320px;
+    position: fixed;
+}
+
 .interface {
     position: absolute;
     left: 0px;

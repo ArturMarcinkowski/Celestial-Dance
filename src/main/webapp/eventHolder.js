@@ -15,7 +15,7 @@ function setUpEventListeners() {
     })
 
     document.querySelector(".reset-button").addEventListener("click", async function () {
-        alert("Multiple data loading. Please wait");
+        alert("Multiple data loading. It can take a while.");
         await fetch("http://"+myIP+":8080/delete-all");
         await sendRequest("http://"+myIP+":8080/generate-data-from-api?name=Sun");
         await sendRequest("http://" + myIP + ":8080/generate-data-from-api?name=Earth")
